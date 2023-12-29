@@ -3,12 +3,16 @@ package stepdefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.http.ContentType;
 import io.restassured.RestAssured;
+import static io.restassured.RestAssured.given;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
+import org.junit.Assert;
 import utilities.Authentication;
+import utilities.ConfigReader;
 
 import java.util.Arrays;
 
@@ -65,7 +69,7 @@ public class API_Stepdefinitions {
     }
 
 
-    @Then("The API user verifies that the status code is {int}")
+    @Given("The API user verifies that the status code is {int}")
     public void theAPIUserVerifiesThatTheStatusCodeIs(int status) {
         response.then()
                 .assertThat()
@@ -73,7 +77,7 @@ public class API_Stepdefinitions {
     }
 
 
-    @And("The API user verifies that the remark information in the response body is {string}")
+    @Given("The API user verifies that the remark information in the response body is {string}")
     public void theAPIUserVerifiesThatTheRemarkInformationInTheResponseBodyIs(String remark) {
         response.then()
                 .assertThat()
@@ -81,11 +85,63 @@ public class API_Stepdefinitions {
     }
 
 
-    @And("The API User verifies that the message information in the response body is {string}")
+    @Given("The API User verifies that the message information in the response body is {string}")
     public void theAPIUserVerifiesThatTheMessageInformationInTheResponseBodyIs(String message) {
         response.then()
                 .assertThat()
                 .body("data.message", Matchers.equalTo(message));
     }
+
+
+    @Given("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
+    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .get(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+    }
+
+
+    @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {string}, {string},  {int}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, String name, String description, int status, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
+        Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
+        Assert.assertNull(jsonPath.get("data[" + dataIndex + "].image"));
+        Assert.assertEquals(description, jsonPath.getString("data[" + dataIndex + "].description"));
+        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
+        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
+    }
+
+
+    @Given("Authorization information is entered into the Authorization information in {string} Endpoint.")
+    public void authorization_information_is_entered_into_the_authorization_information_in_api_loanplans_status_endpoint(String Endpoint) {
+
+    }
+    @Given("A patch body that contains the right data {int} is sent")
+    public void a_patch_body_that_contains_the_right_data_is_sent(int int1) {
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                //           .body(requestBody.toString())
+                .patch(fullPath);
+
+        response.prettyPrint();
+    }
+
 
 }
