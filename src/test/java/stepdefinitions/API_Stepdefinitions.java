@@ -3,6 +3,7 @@ package stepdefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -144,4 +145,89 @@ public class API_Stepdefinitions {
     }
 
 
+
+    @When("The API user prepares a POST request containing the correct data to send to the user subscriber add endpoint")
+    public void theAPIUserPreparesAPOSTRequestContainingTheCorrectDataToSendToTheUserSubscriberAddEndpoint() {
+        requestBody=new JSONObject();
+
+        requestBody.put("email",ConfigReader.getProperty("email"));
+    }
+
+    @When("The API user prepares a POST request containing invalid data to send to the user subscriber add endpoint")
+    public void theAPIUserPreparesAPOSTRequestContainingInvalidDataToSendToTheUserSubscriberAddEndpoint() {
+        requestBody=new JSONObject();
+
+        requestBody.put("invalidmail",ConfigReader.getProperty("invalidmail"));
+    }
+
+
+    @Then("The API user saves the response from the api subscriber details endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheApiSubscriberDetailsEndpointWithValidAuthorizationInformation() {
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .body(requestBody.toString())
+                .post(fullPath);
+
+        response.prettyPrint();
+    }
+
+    @When("The API user saves the response from the api subscriber add endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheApiSubscriberAddEndpointWithValidAuthorizationInformation() {
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .body(requestBody.toString())
+                .post(fullPath);
+
+        response.prettyPrint();
+
+    }
+
+    @When("The API user records the response with invalid authorization information, verifies that the status code is {int} and confirms that the error information is Unauthorized ...")
+    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized(int status) {
+        String message;
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .post(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized request"));
+    }
+
+
+    @When("The API user saves the response from the api subscriber add endpoint with invalid authorization")
+    public void theAPIUserSavesTheResponseFromTheApiSubscriberAddEndpointWithInvalidAuthorization() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .get(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+    }
 }
+
+
+
+
+
