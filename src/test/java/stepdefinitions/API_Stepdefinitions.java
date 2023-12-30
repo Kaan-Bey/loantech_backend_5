@@ -77,6 +77,7 @@ public class API_Stepdefinitions {
     }
 
 
+
     @Given("The API user verifies that the remark information in the response body is {string}")
     public void theAPIUserVerifiesThatTheRemarkInformationInTheResponseBodyIs(String remark) {
         response.then()
@@ -125,10 +126,6 @@ public class API_Stepdefinitions {
     }
 
 
-    @Given("Authorization information is entered into the Authorization information in {string} Endpoint.")
-    public void authorization_information_is_entered_into_the_authorization_information_in_api_loanplans_status_endpoint(String Endpoint) {
-
-    }
     @Given("A patch body that contains the right data {int} is sent")
     public void a_patch_body_that_contains_the_right_data_is_sent(int int1) {
         response = given()
