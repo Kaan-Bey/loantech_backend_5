@@ -32,12 +32,12 @@ public class Authentication {
         }
 
         Response response = given()
-                              .spec(spec)
-                              .contentType(ContentType.JSON)
-                              .header("Accept", "application/json")
-                          .when()
-                              .body(reqBody.toString())
-                              .post("/{pp1}/{pp2}");
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .header("Accept", "application/json")
+                .when()
+                .body(reqBody.toString())
+                .post("/{pp1}/{pp2}");
 
 
         JsonPath repJP = response.jsonPath();
