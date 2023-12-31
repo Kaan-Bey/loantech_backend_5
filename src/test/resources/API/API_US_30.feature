@@ -23,6 +23,9 @@ Feature:  API_US_25 As an administrator (admin) I want to be able to access
   Scenario: API_US_30_TC_03 validation test Id(x) whose Response also returns information
   (user_id, name, email, ticket, ticket, subject, status, priority, last_reply, created_at,
   updated_at)
+    *  The API user sets "api/tickets/pending/<id>" path parameters
+    * The API user saves the response from the api categories list endpoint with valid authorization information
+    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, "<name>", "<description>",  <status>, "<created_at>", "<updated_at>"
 
 
 

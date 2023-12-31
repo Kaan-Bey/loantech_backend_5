@@ -13,8 +13,8 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
     * The API user verifies that the remark information in the response body is "success"
 
     Examples:
-      | id |
-      | 1  |
+      | id  |
+      | 602 |
 
 
   Scenario:  API_US_12_TC_02 Api/Categories/Details/{{id}} Endpoint'e valid Authorization information
@@ -57,8 +57,10 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
     * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, "<name>", "<description>",  <status>, "<created_at>", "<updated_at>"
 
     Examples:
-      | dataIndex | id | name       | description | status | created_at                  | updated_at                  |
-      | 0         | 1  | Basic Loan | Basic Loan  | 1      | 2023-10-16T09:29:44.000000Z| 2023-12-30T17:13:59.000000Z |
+      | dataIndex | id  | name        | description     | status | created_at                  | updated_at                  |
+      | 0         | 602 | sadiksadece | sadecesaddeceu. | 1      | 2023-12-31T13:10:21.000000Z | 2023-12-31T13:10:21.000000Z |
+
+
 
 
 
