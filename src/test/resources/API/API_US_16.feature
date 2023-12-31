@@ -45,10 +45,11 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
     * The API User verifies that the message information in the response body is "No category"
     # Api kullanicisi response bodydeki mesaj bilgisinin "No category" oldugunu doğrular
 
+
   @API16
-  Scenario: API_US_16_TC_04 When a DELETE request is sent to the api/categories/delete/{{id}} endpoint with valid authorization
+  Scenario Outline: API_US_16_TC_04 When a DELETE request is sent to the api/categories/delete/{{id}} endpoint with valid authorization
   information and a non-existent 'id', the returned status code should be 203 and the error information in the
-  response body should verify as: "Unauthorized request".
+  response body should verify as: "Unauthorized request"
 
     * The API user sets "api/categories/delete/<id>" path parameters
     * The API user saves the response from the api categories delete endpoint with invalid authorization information
@@ -60,6 +61,3 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
     Examples:
       | id  |
       | 606 |
-
-
-

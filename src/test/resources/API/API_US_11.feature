@@ -1,5 +1,5 @@
 
-
+@API
 Feature: API_US_11 As an administrator (admin), I want to be able to access the categories list via API connection.
 
   Scenario: API_US_11_TC_01 When a valid GET request is sent to the 'api/categories/list' endpoint with the appropriate
@@ -17,7 +17,7 @@ Feature: API_US_11 As an administrator (admin), I want to be able to access the 
     * The API user sets "api/categories/list" path parameters
     * The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized
 
-  @API
+
   Scenario Outline: API_US_11_TC_03 Refund the return information of the id (x) in the response (name, image, description, status, created_at, updated_at)
 
     * The API user sets "api/categories/list" path parameters
