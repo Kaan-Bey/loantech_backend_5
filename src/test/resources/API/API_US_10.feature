@@ -5,25 +5,19 @@ Feature: API_US_10 As a user, I want to access the list of loans via API connect
 
     * The API user sets "user/list/loan" path parameters
     * The API user saves the response from the user list loan endpoint with valid authorization information
-    #Api kullanicisi user list loan  endpointinden donen responsei gecerli authorization bilgisi ile kaydeder
     * The API user verifies that the status code is 200
-    #Api kullanicisi status codeun 200 oldugunu dogrular
     * The API user verifies that the remark information in the response body is "success"
-    #Api kullanicisi response bodydeki remark bilgisinin "success" oldugunu dogrular
 
   Scenario: user/list/loan' endpoint with invalid authorization information, the returned status code is 401, and the error message in the response body is "Unauthorized request"
 
     * The API user sets "user/list/loan" path parameters
     * The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized
-    #Api kullanicisi responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
 
   Scenario Outline: id(x) (loan_number, user_id, plan_id, amount, per_installment, installment_interval, delay_value, charge_per_installment, delay_charge, given_installment, total_installment, admin_feedback, status, due_notification_sent, approved_at, created_at, updated_at)
 
     * The API user sets "user/list/loan" path parameters
     * The API user saves the response from the user list loan endpoint with valid authorization information
     * Verify the information of the one with the id <dataIndex> in the API user response body: "<loan_number>", <user_id>, <plan_id>, "<amount>", "<per_installment>", <installment_interval>, <delay_value>, "<charge_per_installment>", "<delay_charge>", <given_installment>, <total_installment>, "<admin_feedback>", <status>, "<due_notification_sent>", "<approved_at>", "<created_at>", "<updated_at>"
-    #API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular
-
 
     Examples:
       | dataIndex | loan_number  | user_id | plan_id | amount       | per_installment | installment_interval | delay_value | charge_per_installment | delay_charge | given_installment | total_installment | admin_feedback | status | due_notification_sent | approved_at | created_at                  | updated_at                  |
