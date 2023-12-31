@@ -70,7 +70,6 @@ public class API_Stepdefinitions {
     }
 
 
-
     @Given("The API user verifies that the status code is {int}")
     public void theAPIUserVerifiesThatTheStatusCodeIs(int status) {
         response.then()
@@ -79,14 +78,12 @@ public class API_Stepdefinitions {
     }
 
 
-
     @Given("The API user verifies that the remark information in the response body is {string}")
     public void theAPIUserVerifiesThatTheRemarkInformationInTheResponseBodyIs(String remark) {
         response.then()
                 .assertThat()
                 .body("remark", Matchers.equalTo(remark));
     }
-
 
 
     @Given("The API User verifies that the message information in the response body is {string}")
@@ -109,23 +106,6 @@ public class API_Stepdefinitions {
 
         response.prettyPrint();
 
-    }
-
-    @Then("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
-    public void TheAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized() {
-        try {
-            response = RestAssured.given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .get(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
 
     @Then("Verify the information of the one with the id {int} in the API user response body: {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string}, {string}")
@@ -151,8 +131,6 @@ public class API_Stepdefinitions {
         Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
 
     }
-
-
 
 
     @Given("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
@@ -202,19 +180,18 @@ public class API_Stepdefinitions {
     }
 
 
-
     @When("The API user prepares a POST request containing the correct data to send to the user subscriber add endpoint")
     public void theAPIUserPreparesAPOSTRequestContainingTheCorrectDataToSendToTheUserSubscriberAddEndpoint() {
-        requestBody=new JSONObject();
+        requestBody = new JSONObject();
 
-        requestBody.put("email",ConfigReader.getProperty("email"));
+        requestBody.put("email", ConfigReader.getProperty("email"));
     }
 
     @When("The API user prepares a POST request containing invalid data to send to the user subscriber add endpoint")
     public void theAPIUserPreparesAPOSTRequestContainingInvalidDataToSendToTheUserSubscriberAddEndpoint() {
-        requestBody=new JSONObject();
+        requestBody = new JSONObject();
 
-        requestBody.put("invalidmail",ConfigReader.getProperty("invalidmail"));
+        requestBody.put("invalidmail", ConfigReader.getProperty("invalidmail"));
     }
 
 
@@ -247,41 +224,7 @@ public class API_Stepdefinitions {
 
     }
 
-    @When("The API user records the response with invalid authorization information, verifies that the status code is {int} and confirms that the error information is Unauthorized ...")
-    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized(int status) {
-        String message;
-        try {
-            response = given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .post(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
 
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized request"));
-    }
-
-
-    @When("The API user saves the response from the api subscriber add endpoint with invalid authorization")
-    public void theAPIUserSavesTheResponseFromTheApiSubscriberAddEndpointWithInvalidAuthorization() {
-        try {
-            response = given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .get(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
-    }
 }
 
 
