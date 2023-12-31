@@ -9,3 +9,4 @@ Feature: API_US_31
     * The API user verifies that the status code is 200
     * The API user verifies that the remark information in the response body is "success"
     #Api kullanicisi response bodydeki remark bilgisinin "success" oldugunu doğrular
+
