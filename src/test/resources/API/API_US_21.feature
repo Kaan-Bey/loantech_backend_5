@@ -7,8 +7,6 @@ Feature: API_US_21 As an administrator, I want to update the status information 
   sent to the api/loanplans/status/{{id}} endpoint, it is tested that the status code returned is 200 and
   the message in the response body is "Status changed".
 
-
-
     * The API user sets "api/loanplans/status/<id>" path parameters
     * The API user saves the response from the api loanplans status endpoint with valid authorization information
     * The API user verifies that the status code is 200
@@ -26,7 +24,6 @@ Feature: API_US_21 As an administrator, I want to update the status information 
     * The API user saves the response from the api loanplans status endpoint with valid authorization information
     * The API user verifies that the status code is 203
     * The API User verifies that the message information in the response body is "No id"
-
 
 
   Scenario Outline: API_US_21_TC_03 APİ/LoanPlans/Status/{{id}} When a patch Body that contains a patch body
