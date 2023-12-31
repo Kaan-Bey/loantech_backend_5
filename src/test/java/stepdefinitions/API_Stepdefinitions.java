@@ -152,26 +152,6 @@ public class API_Stepdefinitions {
     }
 
 
-
-/*
-    @Given("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
-    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized() {
-        try {
-            response = given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .get(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
-    }
-
-*/
     @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {string}, {string},  {int}, {string}, {string}")
     public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, String name, String description, int status, String created_at, String updated_at) {
         jsonPath = response.jsonPath();
@@ -202,56 +182,8 @@ public class API_Stepdefinitions {
 
 
 
-    @Given("A patch body that does not contain {int} is sent")
-    public void a_patch_body_that_does_not_contain_is_sent(Integer int1) {
-        response = given()
-                .spec(spec)
-                .contentType(ContentType.JSON)
-                .header("Accept", "application/json")
-                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
-                .when()
-                .body(requestBody.toString())
-                .patch(fullPath);
-
-        response.prettyPrint();
-    }
-
-
-    @Given("A patch body that does non -registration information is sent")
-    public void a_patch_body_that_does_non_registration_information_is_sent() {
-        response = given()
-                .spec(spec)
-                .contentType(ContentType.JSON)
-                .header("Accept", "application/json")
-                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
-                .when()
-           //     .body(requestBody.toString())
-                .patch(fullPath);
-
-        response.prettyPrint();
-    }
-
-
-/*
-    @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {int}, {string}, {string},  {int}, {string}, {string}")
-    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, int user_id, String name, String description, int status, String created_at, String updated_at) {
-        jsonPath = response.jsonPath();
-
-        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
-        Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
-        Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
-        Assert.assertNull(jsonPath.get("data[" + dataIndex + "].image"));
-        Assert.assertEquals(description, jsonPath.getString("data[" + dataIndex + "].description"));
-        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
-        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
-        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
-    }
-    */
-
-
-    @Given("Verify the information of the one with the id {int} in the API user response body:{int}, {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
-    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at ) {
-
+    @Given("Verify the information of the one with the {int} in the API user response body: {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_in_the_apı_user_response_body(int id, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at) {
         jsonPath = response.jsonPath();
 
         Assert.assertEquals(id, jsonPath.getInt("data.id"));
@@ -265,21 +197,6 @@ public class API_Stepdefinitions {
         Assert.assertEquals(last_reply, jsonPath.getString("data.last_reply"));
         Assert.assertEquals(created_at, jsonPath.getString("data.created_at"));
         Assert.assertEquals(updated_at, jsonPath.getString("data.updated_at"));
-/*
-        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
-        Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
-        Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
-        Assert.assertEquals(email, jsonPath.getString("data[" + dataIndex + "].email"));
-        Assert.assertEquals(ticket, jsonPath.getString("data[" + dataIndex + "].ticket"));
-        Assert.assertEquals(subject, jsonPath.getString("data[" + dataIndex + "].subject"));
-        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
-        Assert.assertEquals(priority, jsonPath.getInt("data[" + dataIndex + "].priority"));
-        Assert.assertEquals(last_reply, jsonPath.getString("data[" + dataIndex + "].last_reply"));
-        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
-        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
-
-
- */
     }
     @Given("The API user verifies that the status information in the response body is {int}")
     public void the_apı_user_verifies_that_the_status_information_in_the_response_body_is(int status) {
