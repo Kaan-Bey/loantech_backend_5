@@ -16,7 +16,7 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
       | id  |
       | 602 |
 
-
+  @sad
   Scenario:  API_US_12_TC_02 Api/Categories/Details/{{id}} Endpoint'e valid Authorization information
   and (id) when a get request is  sent to the status Code 203 and Response Message
   information should be correct.
@@ -26,7 +26,7 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
     *  The API user verifies that the status code is 203
     * The API User verifies that the message information in the response body is "No id"
 
-
+  @sad
   Scenario Outline:  API_US_12_TC_03  Api/Categories/Details/{{id}} When a ghetDiest contains an unreasonable
   Authorization information and a non -registration information,
   the status code is 203 and the Response Message information is "No Category".
@@ -39,6 +39,7 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
       | id  |
       | 951 |
 
+  @sad
   Scenario Outline:  API_US_12_TC_04 APİ/Categories/Details/{{id}} When a get request was sent to Endpoint
   with Authorization information, Status Code is 401 and the Error information in Response
   Body is "UNUNUTHORIZED REQUEST".
@@ -49,6 +50,7 @@ Feature:API_US_12 As an administrator, I want to be able to access the categorie
       | id  |
       | 542 |
 
+  @sad
   Scenario Outline:  API_US_12_TC_05 The contents of the data (id, name, image, description, status,
   created_at, updated_at) in Response Body should be verified.
 

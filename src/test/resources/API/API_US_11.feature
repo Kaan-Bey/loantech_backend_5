@@ -26,6 +26,6 @@ Feature: API_US_11 As an administrator (admin), I want to be able to access the 
 
     Examples:
       | dataIndex | id  | name           | description                    | status | created_at                  | updated_at                  |
-      | 0         | 561 | Test Category1 | New category for test purposes | 1      | 2023-12-29T10:40:02.000000Z | 2023-12-29T10:40:02.000000Z |
+      | 0         | 607 | Test Category1 | New category for test purposes | 1      | 2023-12-31T16:09:25.000000Z | 2023-12-29T10:40:02.000000Z2023-12-31T16:09:25.000000Z |
 
 
