@@ -418,8 +418,39 @@ public class API_Stepdefinitions<RestAssuredException> {
         Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
 
+    @Given("The API user saves the response from the user loans aprove endpoint with valid authorization information")
+    public void the_apı_user_saves_the_response_from_the_user_loans_aprove_endpoint_with_valid_authorization_information() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .patch(fullPath);
+
+        response.prettyPrint();
+    }
+    @Given("The API user saves the response from the api loans aprove endpoint with invalid authorization information information and confirms that the status code is {string} and the error message is Unauthorized")
+    public void the_apı_user_saves_the_response_from_the_api_loans_aprove_endpoint_with_invalid_authorization_information_information_and_confirms_that_the_status_code_is_and_the_error_message_is_unauthorized(String string) {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .patch(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+    }
 
 }
+
+
+
+
 
 
 
