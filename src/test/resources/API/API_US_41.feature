@@ -17,9 +17,7 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
 
     Examples:
       | id  |
-      | 231 |
-
-
+      | 222|
 
 
 
@@ -38,7 +36,7 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
 
     Examples:
       | id  |
-      | 231 |
+      | 222 |
 
 
 
