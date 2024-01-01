@@ -3,6 +3,7 @@ package stepdefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -69,14 +70,12 @@ public class API_Stepdefinitions {
     }
 
 
-
     @Given("The API user verifies that the status code is {int}")
     public void theAPIUserVerifiesThatTheStatusCodeIs(int status) {
         response.then()
                 .assertThat()
                 .statusCode(status);
     }
-
 
 
     @Given("The API user verifies that the remark information in the response body is {string}")
@@ -87,7 +86,6 @@ public class API_Stepdefinitions {
     }
 
 
-
     @Given("The API User verifies that the message information in the response body is {string}")
     public void theAPIUserVerifiesThatTheMessageInformationInTheResponseBodyIs(String message) {
         response.then()
@@ -96,8 +94,8 @@ public class API_Stepdefinitions {
 
     }
 
-    @Given("The API user saves the response from the user list loan endpoint with valid authorization information")
-    public void TheAPIusersavestheresponsefromtheuserlistloanendpointwithvalidauthorizationinformation() {
+    @Given("API user saves the response from the api categories list endpoint with valid authorization information")
+    public void API_user_saves_the_response_from_the_api_categories_list_endpoint_with_valid_authorization_information() {
 
         response = RestAssured.given()
                 .spec(spec)
@@ -108,23 +106,6 @@ public class API_Stepdefinitions {
 
         response.prettyPrint();
 
-    }
-
-    @Then("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
-    public void TheAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized() {
-        try {
-            response = RestAssured.given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .get(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
 
     @Then("Verify the information of the one with the id {int} in the API user response body: {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string}, {string}")
@@ -149,6 +130,24 @@ public class API_Stepdefinitions {
         Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
         Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
 
+    }
+
+
+    @Given("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized")
+    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorized() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .get(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
 
 
@@ -181,142 +180,54 @@ public class API_Stepdefinitions {
     }
 
 
+    @When("The API user prepares a POST request containing the correct data to send to the user subscriber add endpoint")
+    public void theAPIUserPreparesAPOSTRequestContainingTheCorrectDataToSendToTheUserSubscriberAddEndpoint() {
+        requestBody = new JSONObject();
 
-    @Given("Verify the information of the one with the {int} in the API user response body: {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
-    public void verify_the_information_of_the_one_with_the_in_the_apı_user_response_body(int id, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at) {
-        jsonPath = response.jsonPath();
-
-        Assert.assertEquals(id, jsonPath.getInt("data.id"));
-        Assert.assertEquals(user_id, jsonPath.getInt("data.user_id"));
-        Assert.assertEquals(name, jsonPath.getString("data.name"));
-        Assert.assertEquals(email, jsonPath.getString("data.email"));
-        Assert.assertEquals(ticket, jsonPath.getString("data.ticket"));
-        Assert.assertEquals(subject, jsonPath.getString("data.subject"));
-        Assert.assertEquals(status, jsonPath.getInt("data.status"));
-        Assert.assertEquals(priority, jsonPath.getInt("data.priority"));
-        Assert.assertEquals(last_reply, jsonPath.getString("data.last_reply"));
-        Assert.assertEquals(created_at, jsonPath.getString("data.created_at"));
-        Assert.assertEquals(updated_at, jsonPath.getString("data.updated_at"));
+        requestBody.put("email", ConfigReader.getProperty("email"));
     }
-    @Given("The API user verifies that the status information in the response body is {int}")
-    public void the_apı_user_verifies_that_the_status_information_in_the_response_body_is(int status) {
 
-        jsonPath=response.jsonPath();
+    @When("The API user prepares a POST request containing invalid data to send to the user subscriber add endpoint")
+    public void theAPIUserPreparesAPOSTRequestContainingInvalidDataToSendToTheUserSubscriberAddEndpoint() {
+        requestBody = new JSONObject();
 
-        Assert.assertEquals(status, jsonPath.getInt("data[0].status"));
-
+        requestBody.put("invalidmail", ConfigReader.getProperty("invalidmail"));
     }
 
 
-    @Given("The API user saves the response from the api loanplans status endpoint with valid authorization information")
-    public void the_apı_user_saves_the_response_from_the_api_loanplans_status_endpoint_with_valid_authorization_information() {
-
-        response = RestAssured.given()
-                .spec(spec)
-                .header("Accept", "application/json")
-                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
-                .when()
-                .patch(fullPath);
-
-        response.prettyPrint();
-
-    }
-
-    @Given("The API user records the response from the api loanplans status endpoint with invalid authorization information verifies that the status code is '401' and confirms that the error information is Unauthorized")
-    public void the_apı_user_records_the_response_from_the_api_loanplans_status_endpoint_with_invalid_authorization_information_verifies_that_the_status_code_is_and_confirms_that_the_error_information_is_unauthorized() {
-        try {
-            response = RestAssured.given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .patch(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
-    }
-
-
-    @And("The API user saves the response from the api categories status endpoint with valid authorization information")
-    public void TheAPIusersavestheresponsefromtheapicategoriesstatusendpointwithvalidauthorizationinformation() {
+    @Then("The API user saves the response from the api subscriber details endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheApiSubscriberDetailsEndpointWithValidAuthorizationInformation() {
         response = given()
                 .spec(spec)
+                .contentType(ContentType.JSON)
                 .header("Accept", "application/json")
                 .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
                 .when()
-                .patch(fullPath);
+                .body(requestBody.toString())
+                .post(fullPath);
 
         response.prettyPrint();
-
     }
 
-    @Then("The API user saves the response from the api categories status endpoint with invalid authorization information and verifies that the status code is '401' and the error message is Unauthorized")
-    public void theAPIUserSavesTheResponseFromTheApiCategoriesStatusEndpointWithInvalidAuthorizationInformationAndVerifiesThatTheStatusCodeIsAndTheErrorMessageIsUnauthorized() {
-        try {
-            response = given()
-                    .spec(spec)
-                    .header("Accept", "application/json")
-                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
-                    .when()
-                    .patch(fullPath);
-        } catch (Exception e) {
-            mesaj = e.getMessage();
-        }
-        System.out.println("mesaj: " + mesaj);
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
-    }
-
-    @And("The API user saves the response from the api categories details endpoint with valid authorization information")
-    public void TheAPIusersavestheresponsefromtheapicategoriesdetailsendpointwithvalidauthorizationinformation() {
+    @When("The API user saves the response from the api subscriber add endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheApiSubscriberAddEndpointWithValidAuthorizationInformation() {
         response = given()
                 .spec(spec)
+                .contentType(ContentType.JSON)
                 .header("Accept", "application/json")
                 .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
                 .when()
-                .get(fullPath);
+                .body(requestBody.toString())
+                .post(fullPath);
 
         response.prettyPrint();
-    }
-
-    @Then("The API user Verifies that the status information in the response body is {int}")
-    public void The_apı_user_verifies_that_the_status_information_in_the_response_body_is(int status) {
-        jsonPath = response.jsonPath();
-
-        Assert.assertEquals(status, jsonPath.getInt("data[0].status"));
-
 
     }
 
-    @Given("The API user saves the response from the api ticket list endpoint with valid authorization information")
-    public void TheAPIUserSavesTheResponseFromTheApiTicketListEndpointWithValidAuthorizationInformation() {
-        response = given()
-                .spec(spec)
-                .header("Accept", "application/json")
-                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
-                .when()
-                .get(fullPath);
 
-        response.prettyPrint();
-    }
-
-    @Then("Verify the information of the one with the id {int} in the API user response body: {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
-    public void Verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at) {
-        jsonPath = response.jsonPath();
-
-        Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
-        Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
-        Assert.assertEquals(email, jsonPath.getString("data[" + dataIndex + "].email"));
-        Assert.assertEquals(ticket, jsonPath.getString("data[" + dataIndex + "].ticket"));
-        Assert.assertEquals(subject, jsonPath.getString("data[" + dataIndex + "].subject"));
-        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
-        Assert.assertEquals(priority, jsonPath.getInt("data[" + dataIndex + "].priority"));
-        Assert.assertEquals(last_reply, jsonPath.getString("data[" + dataIndex + "].last_reply"));
-        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
-        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
-    }
 }
+
+
+
+
 
