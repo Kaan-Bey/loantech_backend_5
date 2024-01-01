@@ -84,6 +84,7 @@ public class API_Stepdefinitions {
                 .when()
                 .get(fullPath);
         response.prettyPrint();
+    }
 
         @Then("Verify the information of the one with the id {int} in the API user response body: {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string}, {string}")
         public void Verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body ( int dataIndex, String
@@ -127,11 +128,6 @@ public class API_Stepdefinitions {
 
             Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
         }
-
-
-        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
-    }
-
 
     @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {string}, {string},  {int}, {string}, {string}")
     public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, String name, String description, int status, String created_at, String updated_at) {
@@ -296,11 +292,6 @@ public class API_Stepdefinitions {
         Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
 
-
-    @And("The API user saves the response from the api categories status endpoint with valid authorization information")
-    public void TheAPIusersavestheresponsefromtheapicategoriesstatusendpointwithvalidauthorizationinformation() {
-
-
         @When("The API user prepares a POST request containing the correct data to send to the user subscriber add endpoint")
         public void theAPIUserPreparesAPOSTRequestContainingTheCorrectDataToSendToTheUserSubscriberAddEndpoint () {
             requestBody = new JSONObject();
@@ -359,7 +350,7 @@ public class API_Stepdefinitions {
             response.prettyPrint();
         }
 
-        @When("The API user verifies that the content of the data field in the response body includes {}, {}, {string}, {string}, {string}, {string}, {}, {}, {string}, {string}, {string}")
+        @When("The API user verifies that the content of the data field in the response body includes {int}, {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
         public void theAPIUserVerifiesThatTheContentOfTheDataFieldInTheResponseBodyIncludes ( int id,
         int user_id, String name, String email, String ticket, String subject,int status, int priority, String
         last_reply, String created_at, String updated_at){
@@ -422,8 +413,7 @@ public class API_Stepdefinitions {
 
         @When("Verify the information of the one with Installment the id {int} in the API user response body:{int}, {int}, {string}, {string}")
         public void verifyTheInformationOfTheOneWithInstallmentTheIdInTheAPIUserResponseBody ( int dataIndex,
-        int loan_id, int id, String delay_charge, String installment_date )
-        {
+        int loan_id, int id, String delay_charge, String installment_date ) {
 
             jsonPath = response.jsonPath();
             Assert.assertEquals(loan_id, jsonPath.getInt("data.data[" + dataIndex + "].loan_id"));
