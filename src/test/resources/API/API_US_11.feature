@@ -25,7 +25,7 @@ Feature: API_US_11 As an administrator (admin), I want to be able to access the 
     * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, "<name>", "<description>",  <status>, "<created_at>", "<updated_at>"
 
     Examples:
-      | dataIndex | id  | name           | description                    | status | created_at                  | updated_at                  |
-      | 0         | 561 | Test Category1 | New category for test purposes | 1      | 2023-12-29T10:40:02.000000Z | 2023-12-29T10:40:02.000000Z |
+      | dataIndex | id | name           | description                    | status | created_at                  | updated_at                  |
+      | 0         |    | Test Category1 | New category for test purposes | 1      | 2023-12-29T10:40:02.000000Z | 2023-12-29T10:40:02.000000Z |
 
 
