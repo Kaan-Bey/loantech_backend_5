@@ -14,7 +14,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     Examples:
       | id  |
-      | 605 |
+      | 606 |
 
 
   @API16
@@ -28,8 +28,6 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
     # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
     * The API User verifies that the message information in the response body is "No id"
     # Api kullanicisi response bodydeki mesaj bilgisinin "No id" oldugunu doğrular
-
-
 
 
   @API16
@@ -52,12 +50,23 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
   response body should verify as: "Unauthorized request"
 
     * The API user sets "api/categories/delete/<id>" path parameters
-    * The API user saves the response from the api categories delete endpoint with invalid authorization information
-    # Api kullanicisi user ticket delete endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder,
-    * The API user verifies that the status code is 401
-    # status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
-    * The Api User verifies that the error message informatiion in the response body is "Unauthorized request"
+    * The API user saves the response from the api categories delete endpoint with invalid authorization information information and confirms that the status code is '401' and the error message is Unauthorized
+    # Api kullanicisi user ticket delete endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
 
     Examples:
       | id  |
-      | 606 |
+      | 609 |
+
+
+    @API16
+    Scenario Outline: API_US_16_TC_05 Successful deletion of the requested category record via the API must be verified by sending
+    a GET request to the api/categories/details/{{id}} endpoint with the deleted category ID returned in the response body.
+
+    * The API user sets "api/categories/details/<id>" path parameters
+    * The API user saves the response from the api categories list endpoint with valid authorization information
+    * The API user verifies that the status code is 203
+    * The API User verifies that the message information in the response body is "No category"
+
+      Examples:
+      | id  |
+      | 605 |

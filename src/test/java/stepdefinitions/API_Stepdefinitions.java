@@ -219,4 +219,49 @@ public class API_Stepdefinitions {
                 .get(fullPath);
         response.prettyPrint();
     }
+    @Given("The API user saves the response from the user category delete endpoint with valid authorization information")
+    public void the_apı_user_saves_the_response_from_the_user_category_delete_endpoint_with_valid_authorization_information() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .delete(fullPath);
+
+        response.prettyPrint();
+    }
+
+    @Given("The API user saves the response from the api categories delete endpoint with invalid authorization information information and confirms that the status code is {string} and the error message is Unauthorized")
+    public void the_apı_user_saves_the_response_from_the_api_categories_delete_endpoint_with_invalid_authorization_information_information_and_confirms_that_the_status_code_is_and_the_error_message_is_unauthorized(String string) {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .delete(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+    }
+    @Then("The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized Requist")
+    public void theAPIUserRecordsTheResponseWithInvalidAuthorizationInformationVerifiesThatTheStatusCodeIsAndConfirmsThatTheErrorInformationIsUnauthorizedRequist() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .get(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+    }
+
 }
