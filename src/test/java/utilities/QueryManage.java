@@ -3,7 +3,7 @@ package utilities;
     public class QueryManage {
 
 
-  private String chatUsersQuery = "select count(*) from u168183796_qawonder.chat_users where create_staff_id=1";
+  private String supportTicketQuery = "select count(*) from u168183796_qaloantec.Support_Tickets where create_staff_id=1";
 
   private String studentsQuery = "Select * From u168183796_qawonder.students Where firstname= 'Brian' AND lastname= 'Kohlar'";
 
@@ -18,10 +18,11 @@ package utilities;
 
   //*********Getter**********
 
-    public String getChatUsersQuery() {
-        return chatUsersQuery;
+    public String getSupportTicketsQuery() {
+        return supportTicketQuery;
     }
 
+    /*
     public String getStudentsQuery() {
         return studentsQuery;
     }
@@ -46,4 +47,6 @@ package utilities;
         public String getQuery() {
             return query;
         }
+
+     */
 }

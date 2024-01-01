@@ -1,3 +1,6 @@
+
+@API29
+
 Feature: API_US_29 As an administrator, I want to access the ticket information of a user with a specified ID via API connection.
 
 
@@ -14,7 +17,7 @@ Feature: API_US_29 As an administrator, I want to access the ticket information 
 
     Examples:
       | id |
-      | 13 |
+      | 410 |
 
   Scenario Outline: API_US_29_TC_02 When a GET request with valid authorization credentials and
   without the required data (id) is sent to the 'api/tickets/details/{{id}}' endpoint,
@@ -27,7 +30,7 @@ Feature: API_US_29 As an administrator, I want to access the ticket information 
 
     Examples:
       | id  |
-      | 300 |
+      | 0 |
 
   Scenario Outline: API_US_29_TC_03 When a GET request with valid authorization credentials and
   an (id) that does not correspond to an existing record is sent to the 'api/tickets/details/{{id}}' endpoint,
@@ -55,13 +58,12 @@ Feature: API_US_29 As an administrator, I want to access the ticket information 
       | id |
       |    |
 
-  @API29
   Scenario Outline: API_US_29_TC_05 Verify the contents of the data (id, user_id, name, email,
   ticket, subject, status, priority, last_reply, created_at, updated_at) in the response body
 
     * The API user sets "api/tickets/details/<id>" path parameters
     * The API user saves the response from the api categories list endpoint with valid authorization information
-    * Verify the information of the one with the <id> in the API user response body: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    * Verify the information of the one with the <id> in the API user api tickets details response body: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
   #API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
 
     Examples:
