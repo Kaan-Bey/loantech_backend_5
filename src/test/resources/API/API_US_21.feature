@@ -1,4 +1,4 @@
-
+@API21
 
 Feature: API_US_21 As an administrator, I want to update the status information of existing loan plans via API connection.
 
@@ -45,7 +45,7 @@ Feature: API_US_21 As an administrator, I want to update the status information 
   and the error information in the response body is "Unauthorized request".
 
     * The API user sets "api/loanplans/status/<id>" path parameters
-    * The API user records the response from the api loanplans status endpoint with invalid authorization information verifies that the status code is '401' and confirms that the error information is Unauthorized
+    * The API user records the response from the PATCH api loanplans status endpoint with invalid authorization information verifies that the status code is '401' and confirms that the error information is Unauthorized
 
 
     Examples:
