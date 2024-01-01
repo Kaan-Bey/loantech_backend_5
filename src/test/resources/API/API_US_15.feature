@@ -6,10 +6,8 @@ Feature: API_US_15 As an administrator, I want to update the status information 
 
     * The API user sets "api/categories/status/<id>" path parameters
     * The API user saves the response from the api categories status endpoint with valid authorization information
-    #Api kullanicisi api categories status endpointinden donen responsei gecerli authorization bilgisi ile kaydeder
     * The API user verifies that the status code is 200
     * The API User verifies that the message information in the response body is "Status changed"
-    #Api kullanicisi response bodydeki message bilgisinin "Status changed" oldugunu doğrular
 
     Examples:
       | id |
@@ -37,8 +35,7 @@ Feature: API_US_15 As an administrator, I want to update the status information 
 
     * The API user sets "api/categories/status/<id>" path parameters
     * The API user saves the response from the api categories status endpoint with invalid authorization information and verifies that the status code is '401' and the error message is Unauthorized
-    #Api kullanicisi api categories status endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
-
+    
     Examples:
       | id  |
       | 123 |
