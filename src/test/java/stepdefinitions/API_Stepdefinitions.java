@@ -446,14 +446,23 @@ public class API_Stepdefinitions {
 
         response.prettyPrint();
     }
+    @Given("The API user saves the response from the user ticket list endpoint with valid authorization information")
+    public void the_apı_user_saves_the_response_from_the_user_ticket_list_endpoint_with_valid_authorization_information() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
 
+        response.prettyPrint();
+    }
 
-    @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
-    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex,
-                                                                                            int user_id, String name, String email, String ticket, String subject, int status, int priority, String
-                                                                                                    last_reply, String created_at, String updated_at) {
+    @Then("Verify the information of the one with the id {int} in the API user response body: {int}, {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at) {
         jsonPath = response.jsonPath();
 
+        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
         Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
         Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
         Assert.assertEquals(email, jsonPath.getString("data[" + dataIndex + "].email"));

@@ -25,10 +25,10 @@ Feature: API_US_31 As an administrator, I want to access the tickets that are in
   Scenario Outline: API_US_31_TC_03 Verify the information (user_id, name, email, ticket, subject, status, priority, last_reply, created_at, updated_at)
   returned in the id(x) response
 
-    * The API user sets "api/ticket/list" path parameters
-    * The API user saves the response from the api Tickets endpoint with valid authorization information
-    # API kullanicisi response bodydeki data <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>" içeriklerini doğrular
+    * The API user sets "api/tickets/list" path parameters
+    * The API user saves the response from the user ticket list endpoint with valid authorization information
     * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    # API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
 
 
     Examples:
