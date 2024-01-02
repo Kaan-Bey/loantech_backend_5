@@ -40,6 +40,7 @@ public class DB_Stepdefinitions {
     @Given("The database connection is closed.")
     public void the_database_connection_is_closed() {
 
+        DBUtils.closeConnection();
 
     }
 

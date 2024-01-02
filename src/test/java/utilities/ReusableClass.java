@@ -13,6 +13,7 @@ import static utilities.DBUtils.*;
 
 public class ReusableClass {
 
+    /*
     public static void createConnection()  {
         String url=ConfigReader.getProperty("base_url");
         String username=ConfigReader.getProperty("adminUsername");
@@ -25,7 +26,7 @@ public class ReusableClass {
         }
     }
 
-    /*
+
     private String baseUrl = "https://example.com/api"; // API'nin temel URL'si
     @When("I send a GET request to {string}")
     public void iSendAGETRequestToEndpoint(String endpoint) {

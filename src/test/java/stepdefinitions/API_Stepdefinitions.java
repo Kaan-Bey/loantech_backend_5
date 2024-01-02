@@ -403,6 +403,26 @@ public class API_Stepdefinitions {
 
     }
 
+
+    @Given("Verify the information of the one with the id {int} in the API user api categories list response body: {int}, {string}, {string},  {int}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_api_categories_list_response_body(int dataIndex, int id, String name, String description, int status, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
+        Assert.assertEquals(name, jsonPath.getString("data[" + dataIndex + "].name"));
+        Assert.assertEquals(description, jsonPath.getString("data[" + dataIndex + "].description"));
+        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
+        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
+    }
+
+
+
+
+
+
 }
+
+
 
 

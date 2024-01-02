@@ -22,10 +22,10 @@ Feature: API_US_11 As an administrator (admin), I want to be able to access the 
 
     * The API user sets "api/categories/list" path parameters
     * The API user saves the response from the api categories list endpoint with valid authorization information
-    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, "<name>", "<description>",  <status>, "<created_at>", "<updated_at>"
+    * Verify the information of the one with the id <dataIndex> in the API user api categories list response body: <id>, "<name>", "<description>",  <status>, "<created_at>", "<updated_at>"
 
     Examples:
-      | dataIndex | id | name           | description                    | status | created_at                  | updated_at                  |
-      | 0         | 612   | Test Category1 | New category for test purposes | 1      | 2023-12-29T10:40:02.000000Z | 2023-12-29T10:40:02.000000Z |
+      | dataIndex | id  | name           | description                    | status | created_at                  | updated_at                  |
+      | 0         | 621 | Test Category1 | New category for test purposes | 1      | 2023-12-29T10:40:02.000000Z | 2023-12-29T10:40:02.000000Z |
 
 
