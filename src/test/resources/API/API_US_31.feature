@@ -15,8 +15,8 @@ Feature: API_US_31 As an administrator, I want to access the tickets that are in
   Scenario: API_US_31_TC_02 When an invalid GET request is sent to the 'api/tickets/closed' endpoint, the error code returned is 401
   and the response error message should be verified as "Unauthorized request".
 
-    * The API user sets "api/ticket/closed" path parameters
-    * The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized Requist
+    * The API user sets "api/tickets/closed" path parameters
+    * The API user records the response with invalid authorization information, verifies that the status code is '401' and confirms that the error information is Unauthorized
     # Api kullanicisi user ticket close endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
 
 
@@ -26,14 +26,14 @@ Feature: API_US_31 As an administrator, I want to access the tickets that are in
   returned in the id(x) response
 
     * The API user sets "api/tickets/list" path parameters
-    * The API user saves the response from the user ticket list endpoint with valid authorization information
-    * Verify the information of the one with the id <dataIndex> in the API user api ticket list response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
-    # API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    * The API user saves the response from the api Tickets endpoint with valid authorization information
+    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    # API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
 
 
     Examples:
-    | dataIndex | id  | user_id | name   | email           | ticket   | subject | status |  priority | last_reply          | created_at                  | updated_at                  |
-    |  0        | 2   | 1       | Elf F  | agenc@gmail.com | 187898   | Test    | 3      | 3         | 2023-11-02 11:16:58 | 2023-10-16T10:08:01.000000Z | 2023-12-29T13:50:10.000000Z |
+      | dataIndex    | id | user_id | name  | email           | ticket | subject | status | priority | last_reply          | created_at                  | updated_at                  |
+      | 0            | 2  | 1       | Elf F | agenc@gmail.com | 187898 | Test    | 3      | 3        | 2023-11-02 11:16:58 | 2023-10-16T10:08:01.000000Z | 2023-12-29T13:50:10.000000Z |
 
 
 

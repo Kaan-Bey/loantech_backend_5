@@ -23,7 +23,7 @@ Feature:  API_US_25 As an administrator (admin) I want to be able to access
   Scenario Outline: API_US_30_TC_03 validation test Id(x) whose Response also returns information
   (user_id, name, email, ticket, ticket, subject, status, priority, last_reply, created_at,
   updated_at)
-    *  The API user sets "api/tickets/details/<id>" path parameters
+    * The API user sets "api/tickets/details/<id>" path parameters
     * The API user saves the response from the api Tickets endpoint with valid authorization information
     * The API user verifies that the content of the data field in the response body includes <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
 

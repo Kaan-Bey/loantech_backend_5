@@ -1,9 +1,8 @@
 Feature: API_US_41 As an administrator, I want to be able to approve the loan information of a user with a given
          ID through the API connection.
 
-
   @API41
-  Scenario Outline: API_US_41_TC_01When valid authorization information and correct data (id) is sent with a PATCH request to
+  Scenario Outline: API_US_41_TC_01 When valid authorization information and correct data (id) is sent with a PATCH request to
   the api/loans/approve/{{id}} endpoint, it should be verified that the status code returned is 200 and the message in
   the response body is "Loan approved successfully".
     
@@ -13,7 +12,6 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
     * The API User verifies that the message information in the response body is "Loan approved successfully"
     # Api kullanicisi response bodydeki mesaj bilgisinin "Loan approved successfully" oldugunu doğrular
-
 
     Examples:
       | id  |
@@ -32,7 +30,6 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
     * The API User verifies that the message information in the response body is "No loan or loan status is not pending."
     # Api kullanicisi response bodydeki mesaj bilgisinin "No loan or loan status is not pending." oldugunu doğrular
-
 
     Examples:
       | id  |
@@ -78,7 +75,6 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     * The API user sets "api/loans/approve/<id>" path parameters
     * The API user saves the response from the api loans aprove endpoint with invalid authorization information information and confirms that the status code is '401' and the error message is Unauthorized
     # Api kullanicisi response bodydeki status code bilgisinin "401", bodydeki error mesaj bilgisinin "Unauthorized" oldugunu doğrular
-
 
     Examples:Verify the information of the one with the id
       | id  |
