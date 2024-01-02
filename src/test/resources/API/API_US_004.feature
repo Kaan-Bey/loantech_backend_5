@@ -1,5 +1,5 @@
 Feature: As a user, I want to be able to update the close information of a registered user ticket through API connection.
-
+@API1
   Scenario Outline: : When a PATCH request with valid authorization information and
                     correct 'id' is sent to the user/ticket/close/{{id}} endpoint, the returned status code should be 200, and the message in
                     the response body should be verified as "Support ticket closed successfully!"
