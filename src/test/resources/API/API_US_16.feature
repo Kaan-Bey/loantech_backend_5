@@ -14,7 +14,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     Examples:
       | id  |
-      | 606 |
+      | 624 |
 
 
   @API16
@@ -51,7 +51,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     * The API user sets "api/categories/delete/<id>" path parameters
     * The API user saves the response from the api categories delete endpoint with invalid authorization information information and confirms that the status code is '401' and the error message is Unauthorized
-    # Api kullanicisi user ticket delete endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
+    # Api kullanicisi user category delete endpointinden donen responsei geçersiz authorization bilgisi ile kaydeder, status codeun 401 ve error bilgisinin Unauthorized oldugunu dogrular
 
     Examples:
       | id  |

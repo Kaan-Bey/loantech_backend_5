@@ -23,7 +23,7 @@ public class DBUtils {
 
 
     public static void createConnection() {
-        String url=ConfigReader.getProperty("db_credentials_url");
+        String url=ConfigReader.getProperty("db_url");
         String username=ConfigReader.getProperty("DBname");
         String password=ConfigReader.getProperty("DBPassword");
         try {
