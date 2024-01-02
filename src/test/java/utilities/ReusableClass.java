@@ -18,6 +18,7 @@ import io.restassured.response.ResponseBody;
 import io.restassured.response.ValidatableResponse;
 
 import javax.script.AbstractScriptEngine;
+
 import javax.swing.text.SimpleAttributeSet;
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -28,19 +29,38 @@ import static hooks.HooksAPI.spec;
 import static io.restassured.RestAssured.given;
 import static stepdefinitions.API_Stepdefinitions.fullPath;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import static utilities.DBUtils.*;
+
+
 public class ReusableClass {
     static Response response;
 
     public static Response getRequest(String admin) {
         response = given()
                 .spec(spec)
-                .header("Accept","application/json")
-                .headers("Authorization", "Bearer","+Authentication.generateToken(admin)")
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer", "+Authentication.generateToken(admin)")
                 .when()
                 .get(fullPath);
         return response;
     }
 
+
+    public static void createConnection() {
+        String url = ConfigReader.getProperty("base_url");
+        String username = ConfigReader.getProperty("adminUsername");
+        String password = ConfigReader.getProperty("adminPassword");
+
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /*
     private String baseUrl = "https://example.com/api"; // API'nin temel URL'si
