@@ -407,6 +407,41 @@ public class API_Stepdefinitions {
     }
 
 
+    @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {int}, {string},  {string}, {string}, {string},{string}, {string},{string}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, int user_id, String amount, String charge, String post_balance, String trx_type, String trx, String details, String remark, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+        Assert.assertEquals(id, jsonPath.getInt("data[" + dataIndex + "].id"));
+        Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
+        Assert.assertEquals(amount, jsonPath.getString("data[" + dataIndex + "].amount"));
+        Assert.assertEquals(charge, jsonPath.getString("data[" + dataIndex + "].charge"));
+        Assert.assertEquals(post_balance, jsonPath.getString("data[" + dataIndex + "].post_balance"));
+        Assert.assertEquals(trx_type, jsonPath.getString("data[" + dataIndex + "].trx_type"));
+        Assert.assertEquals(trx, jsonPath.getString("data[" + dataIndex + "].trx"));
+        Assert.assertEquals(details, jsonPath.getString("data[" + dataIndex + "].details"));
+        Assert.assertEquals(remark, jsonPath.getString("data[" + dataIndex + "].remark"));
+        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
+
+
+    }
+
+@Given("The API user prepares a POST request containing the correct data to send to the user categories add endpoint")
+public void the_apı_user_prepares_a_post_request_containing_the_correct_data_to_send_to_the_user_categories_add_endpoint() {
+    requestBody = new JSONObject();
+    requestBody.put("name", ConfigReader.getProperty("name"));
+    requestBody.put("description", ConfigReader.getProperty("description"));
+
+}
+    @Given("The API user prepares a POST request containing the invalid data to send to the user categories add endpoint")
+    public void the_apı_user_prepares_a_post_request_containing_the_invalid_data_to_send_to_the_user_categories_add_endpoint() {
+        requestBody = new JSONObject();
+
+        requestBody.put("invalidName", ConfigReader.getProperty("invalidName"));
+        requestBody.put("invalidDescription", ConfigReader.getProperty("invalidDescription"));
+
+    }
+
+
     @Given("The API user saves the response from the api loanplans status endpoint with valid authorization information")
     public void the_apı_user_saves_the_response_from_the_api_loanplans_status_endpoint_with_valid_authorization_information() {
 
