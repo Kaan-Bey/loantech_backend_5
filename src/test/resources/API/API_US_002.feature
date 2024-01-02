@@ -1,6 +1,6 @@
 Feature: As a user, I want to access the ticket details of a specified user through the API connection using their ID.
 
-  @API1
+
   Scenario Outline: Verify that when a GET request with valid authorization information and correct data (id)
   is sent to the 'user/ticket/detail/{{id}}' endpoint, the returned status code is 200, and the success
   information in the response body is "true"
@@ -59,15 +59,16 @@ Feature: As a user, I want to access the ticket details of a specified user thro
       | 315 |
 
 
+    @API02
   Scenario Outline: The contents of the data (id, user_id, name, email, ticket, subject, status, priority,
   last_reply, created_at, updated_at) within the response body should be verified
 
     * The API user sets "user/ticket/detail/<id>" path parameters
     * The API user saves the response from the user ticket detail endpoint with valid authorization information
-    * The API user verifies that the content of the data field in the response body includes <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    * The API user verifies that the content of the data field in the user ticket detail response body includes <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
     #API kullanicisi response bodydeki data <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>" içeriklerini doğrular
 
     Examples:
       | id    | user_id    |   name     | email               | ticket | subject      | status | priority | last_reply          | created_at                  | updated_at                  |
-      | 315   |     46     | kaan karan | kaankaran@gmail.com | 396785 | Test Ticket  | 0      | 0        | 2023-12-30 14:22:41 | 2023-12-30T19:22:41.000000Z | 2023-12-30T19:22:41.000000Z |
+      | 315   |     46     | kaan karan | kaankaran@gmail.com | 396785 | Test Ticket  | 3     | 0         | 2023-12-30 14:22:41  | 2023-12-30T19:22:41.000000Z  |2023-12-30T23:01:07.000000Z |
 
