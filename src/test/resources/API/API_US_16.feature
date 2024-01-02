@@ -14,7 +14,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     Examples:
       | id  |
-      | 623 |
+      | 624 |
 
 
   @API16
