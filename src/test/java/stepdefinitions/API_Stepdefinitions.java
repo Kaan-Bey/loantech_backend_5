@@ -527,6 +527,7 @@ public class API_Stepdefinitions {
         Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
         Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
     }
+
     @Given("The API user saves the response from the user loans aprove endpoint with valid authorization information")
     public void the_apı_user_saves_the_response_from_the_user_loans_aprove_endpoint_with_valid_authorization_information() {
         response = given()
@@ -555,6 +556,7 @@ public class API_Stepdefinitions {
 
         Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
     }
+
     @Given("The API user saves the response from the user api loans delete endpoint with valid authorization information")
     public void the_apı_user_saves_the_response_from_the_user_api_loans_delete_endpoint_with_valid_authorization_information() {
         response = given()
