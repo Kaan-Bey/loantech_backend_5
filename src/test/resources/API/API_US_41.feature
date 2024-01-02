@@ -80,6 +80,6 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     # Api kullanicisi response bodydeki status code bilgisinin "401", bodydeki error mesaj bilgisinin "Unauthorized" oldugunu doğrular
 
 
-    Examples:
+    Examples:Verify the information of the one with the id
       | id  |
       | 222 |

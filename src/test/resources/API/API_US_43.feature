@@ -7,7 +7,7 @@ Feature: API_US_43 As an administrator, I should be able to delete a credit reco
   the message information in the response body should be "Loan deleted"
 
     * The API user sets "api/loans/delete/<id>" path parameters
-    * The API user saves the response from the user loans delete endpoint with valid authorization information
+    * The API user saves the response from the user api loans delete endpoint with valid authorization information
     # Api kullanicisi api categories delete id endpointinden donen response'i gecerli authorization bilgisi ile kaydeder
     * The API user verifies that the status code is 200
     # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
@@ -24,7 +24,7 @@ Feature: API_US_43 As an administrator, I should be able to delete a credit reco
   message information response body should be confirmed as "No id"
 
     * The API user sets "api/loans/delete" path parameters
-    * The API user saves the response from the user loans delete endpoint with valid authorization information
+    * The API user saves the response from the user api loans delete endpoint with valid authorization information
     # Api kullanicisi api categories list endpointinden donen responsei gecerli authorization bilgisi ile kaydeder
     * The API user verifies that the status code is 203
     # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
@@ -37,7 +37,7 @@ Feature: API_US_43 As an administrator, I should be able to delete a credit reco
   the message information in the response body should be confirmed as "No loan".
 
     * The API user sets "api/loans/delete/432" path parameters
-    * The API user saves the response from the user loans delete endpoint with valid authorization information
+    * The API user saves the response from the user api loans delete endpoint with valid authorization information
     # Api kullanicisi api categories list endpointinden donen responsei gecerli authorization bilgisi ile kaydeder
     * The API user verifies that the status code is 203
     # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular

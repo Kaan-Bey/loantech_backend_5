@@ -27,7 +27,7 @@ Feature: API_US_31 As an administrator, I want to access the tickets that are in
 
     * The API user sets "api/tickets/list" path parameters
     * The API user saves the response from the user ticket list endpoint with valid authorization information
-    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    * Verify the information of the one with the id <dataIndex> in the API user api ticket list response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
     # API kullanıcı response body icindeki <dataIndex> indexe sahip olanın bilgilerini doğrular: <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
 
 
