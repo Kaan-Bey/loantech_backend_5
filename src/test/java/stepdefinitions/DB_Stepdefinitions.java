@@ -7,6 +7,7 @@ import utilities.QueryManage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DB_Stepdefinitions {
 
@@ -35,6 +36,16 @@ public class DB_Stepdefinitions {
     }
     @Given("Validates the resultSet returned from the support_tickets table.")
     public void validates_the_result_set_returned_from_the_support_tickets_table() {
+
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+
+        String query= "SELECT * FROM u168183796_qaloantec.support_tickets";
+
+        ResultSet resultSet = statement.executeQuery(query);
+
+        resultSet.next();
+
+        System.out.println(resultSet.getString("name"));
 
     }
     @Given("The database connection is closed.")

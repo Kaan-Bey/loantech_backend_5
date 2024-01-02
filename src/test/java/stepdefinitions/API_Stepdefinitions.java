@@ -418,8 +418,57 @@ public class API_Stepdefinitions {
 
 
 
+    @Given("The API user saves the response from the api loans rejected endpoint with valid authorization information")
+    public void The_apı_user_saves_the_response_from_the_api_loans_rejected_endpoint_with_valid_authorization_information() {
+        response = RestAssured.given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
+        response.prettyPrint();
+    }
+
+/*
+    @Given("Verify the information of the one with the id {int} in the API user response body:{string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string},{string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(Integer int1, String string, Integer int2, Integer int3, String string2, String string3, Integer int4, Integer int5, String string4, String string5, Integer int6, Integer int7, String string6, Integer int8, String string7, String string8, String string9, String string10) {
 
 
+
+    }
+*/
+
+    @Given("Verify the information of the one with the id {int} in the API user response body: {int}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {int}, {string},{string}")
+    public void verify_the_information_of_the_one_with_the_id_in_the_apı_user_response_body(int dataIndex, int id, String loan_number, int user_id,
+                                                                                            int plan_id, String amount, String per_installment,
+                                                                                            int installment_interval, int delay_value, String charge_per_installment,
+                                                                                            String delay_charge, int given_installment, int total_installment,
+                                                                                            String admin_feedback, int status, String due_notification_sent,
+                                                                                            String approved_at, String created_at, String updated_at){
+
+
+        jsonPath = response.jsonPath();
+        Assert.assertEquals(id, jsonPath.getInt("data.data[" + dataIndex + "].id"));
+        Assert.assertEquals(loan_number, jsonPath.getString("data.data[" + dataIndex + "].loan_number"));
+        Assert.assertEquals(user_id, jsonPath.getInt("data.data[" + dataIndex + "].user_id"));
+        Assert.assertEquals(plan_id, jsonPath.getInt("data.data[" + dataIndex + "].plan_id"));
+        Assert.assertEquals(amount, jsonPath.getString("data.data[" + dataIndex + "].amount"));
+        Assert.assertEquals(per_installment, jsonPath.getString("data.data[" + dataIndex + "].per_installment"));
+        Assert.assertEquals(installment_interval, jsonPath.getInt("data.data[" + dataIndex + "].installment_interval"));
+        Assert.assertEquals(delay_value, jsonPath.getInt("data.data[" + dataIndex + "].delay_value"));
+        Assert.assertEquals(charge_per_installment, jsonPath.getString("data.data[" + dataIndex + "].charge_per_installment"));
+        Assert.assertEquals(delay_charge, jsonPath.getString("data.data[" + dataIndex + "].delay_charge"));
+        Assert.assertEquals(given_installment, jsonPath.getInt("data.data[" + dataIndex + "].given_installment"));
+        Assert.assertEquals(total_installment, jsonPath.getInt("data.data[" + dataIndex + "].total_installment"));
+        Assert.assertNull(admin_feedback, jsonPath.getString("data.data[" + dataIndex + "].admin_feedback"));
+        Assert.assertEquals(status, jsonPath.getInt("data.data[" + dataIndex + "].status"));
+        Assert.assertNull(due_notification_sent, jsonPath.getString("data.data[" + dataIndex + "].due_notification_sent"));
+        Assert.assertNull(approved_at, jsonPath.getString("data.data[" + dataIndex + "].approved_at"));
+        Assert.assertEquals(created_at, jsonPath.getString("data.data[" + dataIndex + "].created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data.data[" + dataIndex + "].updated_at"));
+
+
+    }
 
 }
 
