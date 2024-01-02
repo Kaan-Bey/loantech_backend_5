@@ -604,5 +604,165 @@ public void the_apı_user_prepares_a_post_request_containing_the_correct_data_to
         response.prettyPrint();
     }
 
+    @Given("The API user saves the response from the user list loan endpoint with valid authorization information")
+    public void TheAPIusersavestheresponsefromtheuserlistloanendpointwithvalidauthorizationinformation() {
+
+        response = RestAssured.given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("user"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+
+    }
+
+    @And("The API user saves the response from the api categories status endpoint with valid authorization information")
+    public void TheAPIusersavestheresponsefromtheapicategoriesstatusendpointwithvalidauthorizationinformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .patch(fullPath);
+
+        response.prettyPrint();
+
+    }
+
+
+    @Then("Verify the information of the one with the idd {int} in the API user response body: {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string}, {string}")
+    public void VerifytheinformationoftheonewiththeiddintheAPIuserresponsebody(int dataIndex, String loan_number, int user_id, int plan_id, String amount, String per_installment, int installment_interval, int delay_value, String charge_per_installment, String delay_charge, int given_installment, int total_installment, String admin_feedback, int status, String due_notification_sent, String approved_at, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(loan_number, jsonPath.getString("data[" + dataIndex + "].loan_number"));
+        Assert.assertEquals(user_id, jsonPath.getInt("data[" + dataIndex + "].user_id"));
+        Assert.assertEquals(plan_id, jsonPath.getInt("data[" + dataIndex + "].plan_id"));
+        Assert.assertEquals(amount, jsonPath.getString("data[" + dataIndex + "].amount"));
+        Assert.assertEquals(per_installment, jsonPath.getString("data[" + dataIndex + "].per_installment"));
+        Assert.assertEquals(installment_interval, jsonPath.getInt("data[" + dataIndex + "].installment_interval"));
+        Assert.assertEquals(delay_value, jsonPath.getInt("data[" + dataIndex + "].delay_value"));
+        Assert.assertEquals(charge_per_installment, jsonPath.getString("data[" + dataIndex + "].charge_per_installment"));
+        Assert.assertEquals(delay_charge, jsonPath.getString("data[" + dataIndex + "].delay_charge"));
+        Assert.assertEquals(given_installment, jsonPath.getInt("data[" + dataIndex + "].given_installment"));
+        Assert.assertEquals(total_installment, jsonPath.getInt("data[" + dataIndex + "].total_installment"));
+        Assert.assertNull(admin_feedback, jsonPath.getString("data[" + dataIndex + "].admin_feedback"));
+        Assert.assertEquals(status, jsonPath.getInt("data[" + dataIndex + "].status"));
+        Assert.assertNull(due_notification_sent, jsonPath.getString("data[" + dataIndex + "].due_notification_sent"));
+        Assert.assertNull(approved_at, jsonPath.getString("data[" + dataIndex + "].approved_at"));
+        Assert.assertEquals(created_at, jsonPath.getString("data[" + dataIndex + "].created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data[" + dataIndex + "].updated_at"));
+
+    }
+
+    @Then("The API user saves the response from the api categories status endpoint with invalid authorization information and verifies that the status code is '401' and the error message is Unauthorized")
+    public void TheAPIUserSavesTheResponseFromTheApiCategoriesStatusEndpointWithInvalidAuthorizationInformationAndVerifiesThatTheStatusCodeIsAndTheErrorMessageIsUnauthorized() {
+        try {
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .headers("Authorization", "Bearer " + ConfigReader.getProperty("invalidToken"))
+                    .when()
+                    .patch(fullPath);
+        } catch (Exception e) {
+            mesaj = e.getMessage();
+        }
+        System.out.println("mesaj: " + mesaj);
+
+        Assert.assertTrue(mesaj.contains("status code: 401, reason phrase: Unauthorized"));
+
+
+    }
+
+    @And("The API user saves the response from the api categories details endpoint with valid authorization information")
+    public void TheAPIusersavestheresponsefromtheapicategoriesdetailsendpointwithvalidauthorizationinformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+    }
+
+    @Then("The API user Verifies that the status information in the response body is {int}")
+    public void Theapıuserverifiesthatthestatusinformationintheresponsebodyis(int status) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(status, jsonPath.getInt("data[0].status"));
+
+
+    }
+
+    @Given("The API user saves the response from the api ticket list endpoint with valid authorization information")
+    public void TheAPIUserSavesTheResponseFromTheApiTicketListEndpointWithValidAuthorizationInformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+    }
+
+    @Given("Verify the information of the one with the {int} in the API user response body: {int}, {string}, {string}, {string}, {string}, {int}, {int}, {string}, {string}, {string}")
+    public void verify_the_information_of_the_one_with_the_in_the_apı_user_response_body(int id, int user_id, String name, String email, String ticket, String subject, int status, int priority, String last_reply, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(id, jsonPath.getInt("data.id"));
+        Assert.assertEquals(user_id, jsonPath.getInt("data.user_id"));
+        Assert.assertEquals(name, jsonPath.getString("data.name"));
+        Assert.assertEquals(email, jsonPath.getString("data.email"));
+        Assert.assertEquals(ticket, jsonPath.getString("data.ticket"));
+        Assert.assertEquals(subject, jsonPath.getString("data.subject"));
+        Assert.assertEquals(status, jsonPath.getInt("data.status"));
+        Assert.assertEquals(priority, jsonPath.getInt("data.priority"));
+        Assert.assertEquals(last_reply, jsonPath.getString("data.last_reply"));
+        Assert.assertEquals(created_at, jsonPath.getString("data.created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data.updated_at"));
+    }
+
+    @Given("The API user saves the response from the api loans paid endpoint with valid authorization information")
+    public void TheAPIusersavestheresponsefromtheapiloanspaidendpointwithvalidauthorizationinformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+    }
+
+    @Given("Verify the information of the one with the {int} in the API user response body: {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {int}, {string}, {string}, {string}, {string}")
+    public void Verifytheinformationoftheonewiththeintheapıuserresponsebody(int id, String loan_number, int user_id, int plan_id, String amount, String per_installment, int installment_interval, int delay_value, String charge_per_installment, String delay_charge, int given_installment, int total_installment, String admin_feedback, int status, String due_notification_sent, String approved_at, String created_at, String updated_at) {
+        jsonPath = response.jsonPath();
+
+        Assert.assertEquals(id, jsonPath.getInt("data.id"));
+        Assert.assertEquals(loan_number, jsonPath.getString("data.loan_number"));
+        Assert.assertEquals(user_id, jsonPath.getInt("data.user_id"));
+        Assert.assertEquals(plan_id, jsonPath.getInt("data.plan_id"));
+        Assert.assertEquals(amount, jsonPath.getString("data.amount"));
+        Assert.assertEquals(per_installment, jsonPath.getString("data.per_installment"));
+        Assert.assertEquals(installment_interval, jsonPath.getInt("data.installment_interval"));
+        Assert.assertEquals(delay_value, jsonPath.getInt("data.delay_value"));
+        Assert.assertEquals(charge_per_installment, jsonPath.getString("data.charge_per_installment"));
+        Assert.assertEquals(delay_charge, jsonPath.getString("data.delay_charge"));
+        Assert.assertEquals(given_installment, jsonPath.getInt("data.given_installment"));
+        Assert.assertEquals(total_installment, jsonPath.getInt("data.total_installment"));
+        Assert.assertNull(admin_feedback, jsonPath.getString("admin_feedback"));
+        Assert.assertEquals(status, jsonPath.getInt("data.status"));
+        Assert.assertNull(due_notification_sent, jsonPath.getString("data.due_notification_sent"));
+        Assert.assertNull(approved_at, jsonPath.getString("data.approved_at"));
+        Assert.assertEquals(created_at, jsonPath.getString("data.created_at"));
+        Assert.assertEquals(updated_at, jsonPath.getString("data.updated_at"));
+
+
+    }
+
+
 }
 
