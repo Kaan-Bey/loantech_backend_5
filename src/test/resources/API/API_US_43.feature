@@ -16,7 +16,7 @@ Feature: API_US_43 As an administrator, I should be able to delete a credit reco
 
     Examples:
       | id  |
-      | 427 |
+      | 445 |
 
   @API43
   Scenario: API_US_43_TC_02 When a valid DELETE request is sent to the 'api/loans/delete/{{id}}' endpoint with

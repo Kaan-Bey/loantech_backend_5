@@ -25,20 +25,15 @@ Feature: API_US_31 As an administrator, I want to access the tickets that are in
   Scenario Outline: API_US_31_TC_03 Verify the information (user_id, name, email, ticket, subject, status, priority, last_reply, created_at, updated_at)
   returned in the id(x) response
 
-    * The API user sets "api/ticket/closed" path parameters
-    * The API user saves the response from the api ticket list endpoint with valid authorization information
-    * The API user verifies that the content of the data field in the response body includes <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
-    #API kullanicisi response bodydeki data <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>" içeriklerini doğrular
-    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, <user_id>, "<name>", "<email>", "<ticket>","<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+    * The API user sets "api/ticket/list" path parameters
+    * The API user saves the response from the api Tickets endpoint with valid authorization information
+    # API kullanicisi response bodydeki data <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>" içeriklerini doğrular
+    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, <user_id>, "<name>", "<email>", "<ticket>", "<subject>", <status>, <priority>, "<last_reply>", "<created_at>", "<updated_at>"
+
 
     Examples:
-      | dataIndex | id  | user_id | name        | email               | ticket   | subject   | status |priority | last_reply          | created_at                  | updated_at                  |
-      | 0         | 437 | 10      | Ahmet Kaya  | ahmetkaya@gmail.com | 305500   | AhmetKaya | 3      | 0       | 2023-12-31 12:49:42 | 2023-12-31T17:49:42.000000Z | 2023-12-31T17:49:43.000000Z |
+    | dataIndex | id  | user_id | name   | email           | ticket   | subject | status |  priority | last_reply          | created_at                  | updated_at                  |
+    |  0        | 2   | 1       | Elf F  | agenc@gmail.com | 187898   | Test    | 3      | 3         | 2023-11-02 11:16:58 | 2023-10-16T10:08:01.000000Z | 2023-12-29T13:50:10.000000Z |
 
-
-
-  # Examples:
-  #   | id  | user_id | name        | email                   | ticket | subject     | status | priority | last_reply          | created_at                  | updated_at                  |
-  #   | 437 | 10      | Ahmet Kaya  | ahmetkaya@gmail.com     | 305500 | AhmetKaya   | 3      | 0        | 2023-12-31 12:49:42 | 2023-12-31T17:49:42.000000Z | 2023-12-31T17:49:43.000000Z |
 
 

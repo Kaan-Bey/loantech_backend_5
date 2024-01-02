@@ -12,12 +12,12 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     * The API user verifies that the status code is 200
     # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
     * The API User verifies that the message information in the response body is "Loan approved successfully"
-    # Api kullanicisi response bodydeki mesaj bilgisinin "category deleted" oldugunu doğrular
+    # Api kullanicisi response bodydeki mesaj bilgisinin "Loan approved successfully" oldugunu doğrular
 
 
     Examples:
       | id  |
-      | 222|
+      | 221|
 
 
 
@@ -29,9 +29,9 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     * The API user sets "api/loans/approve/<id>" path parameters
     * The API user saves the response from the user loans aprove endpoint with valid authorization information
     * The API user verifies that the status code is 203
-    # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
+    # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
     * The API User verifies that the message information in the response body is "No loan or loan status is not pending."
-    # Api kullanicisi response bodydeki mesaj bilgisinin "category deleted" oldugunu doğrular
+    # Api kullanicisi response bodydeki mesaj bilgisinin "No loan or loan status is not pending." oldugunu doğrular
 
 
     Examples:
@@ -47,9 +47,9 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     * The API user sets "api/loans/approve" path parameters
     * The API user saves the response from the user loans aprove endpoint with valid authorization information
     * The API user verifies that the status code is 203
-    # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
+    # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
     * The API User verifies that the message information in the response body is "No id"
-    # Api kullanicisi response bodydeki mesaj bilgisinin "category deleted" oldugunu doğrular
+    # Api kullanicisi response bodydeki mesaj bilgisinin "No id" oldugunu doğrular
 
 
   @API41
@@ -60,9 +60,9 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
     * The API user sets "api/loans/approve/<id>" path parameters
     * The API user saves the response from the user loans aprove endpoint with valid authorization information
     * The API user verifies that the status code is 203
-    # Api kullanicisi response bodydeki status code bilgisinin "200" oldugunu doğrular
+    # Api kullanicisi response bodydeki status code bilgisinin "203" oldugunu doğrular
     * The API User verifies that the message information in the response body is "No loan."
-    # Api kullanicisi response bodydeki mesaj bilgisinin "category deleted" oldugunu doğrular
+    # Api kullanicisi response bodydeki mesaj bilgisinin "No loan." oldugunu doğrular
 
 
     Examples:
@@ -77,7 +77,7 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
 
     * The API user sets "api/loans/approve/<id>" path parameters
     * The API user saves the response from the api loans aprove endpoint with invalid authorization information information and confirms that the status code is '401' and the error message is Unauthorized
-
+    # Api kullanicisi response bodydeki status code bilgisinin "401", bodydeki error mesaj bilgisinin "Unauthorized" oldugunu doğrular
 
 
     Examples:
