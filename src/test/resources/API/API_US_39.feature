@@ -19,8 +19,8 @@ Feature: API_US_39 As an administrator (admin) I want to be able to access loans
   Scenario Outline: API_US_39_TC_03
     * The API user sets "api/loans/rejected" path parameters
     * The API user saves the response from the api loans rejected endpoint with valid authorization information
-    * Verify the information of the one with the id <dataIndex> in the API user response body: <id>, "<loan_number>", <user_id>, <plan_id>, "<amount>", "<per_installment>", <installment_interval>, <delay_value>, "<charge_per_installment>", "<delay_charge>", <given_installment>, <total_installment>, "<admin_feedback>", <status>, <due_notification_sent>, <approved_at>, "<created_at>","<updated_at>"
+    * Verify the information of the one with the id <dataIndex> in the API user api loans rejected response body: <id>, "<loan_number>", <user_id>, <plan_id>, "<amount>", "<per_installment>", <installment_interval>, <delay_value>, "<charge_per_installment>", "<delay_charge>", <given_installment>, <total_installment>, "<admin_feedback>", <status>, "<created_at>","<updated_at>"
 
     Examples:
-      | id  | dataIndex | loan_number  | user_id | plan_id | amount     | per_installment | installment_interval | delay_value | charge_per_installment | delay_charge | given_installment | total_installment | status | created_at                  | updated_at                  |
-      | 450 | 0         | W1OXFJMEJFZA | 8       | 26      | 2.00000000 | 0.02000000      | 1                    | 3           | 1.13000000             | 0.00000000   | 0                 | 999               | 3      | 2024-01-02T14:45:32.000000Z | 2024-01-02T14:45:53.000000Z |
+      | dataIndex | id  | loan_number  | user_id | plan_id | amount       | per_installment | installment_interval | delay_value | charge_per_installment | delay_charge | given_installment | total_installment | admin_feedback      | status | created_at                  | updated_at                  |
+      | 0         | 455 | MVG4ZSRNZX13 | 80      | 196     | 444.00000000 | 48.84000000     | 30                   | 5           | 34.21000000            | 0.00000000   | 0                 | 11                | Bank info is wrong. | 3      | 2024-01-02T17:30:42.000000Z | 2024-01-02T17:54:46.000000Z |

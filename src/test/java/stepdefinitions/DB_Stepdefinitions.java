@@ -12,12 +12,10 @@ import java.sql.Statement;
 public class DB_Stepdefinitions {
 
 
-
     PreparedStatement preparedStatement;
     ResultSet resultSet;
 
     QueryManage queryManage = new QueryManage();
-
 
 
     @Given("Database connection is established.")
@@ -26,17 +24,20 @@ public class DB_Stepdefinitions {
         DBUtils.createConnection();
 
     }
+
     @Given("The query is prepared and executed to the support_tickets table.")
     public void the_query_is_prepared_and_executed_to_the_support_tickets_table() throws SQLException {
 
-        String query= queryManage.getSupportTicketsQuery();
+        String query = queryManage.getSupportTicketsQuery();
 
-        resultSet= DBUtils.getStatement().executeQuery(query);
+        resultSet = DBUtils.getStatement().executeQuery(query);
 
     }
+
     @Given("Validates the resultSet returned from the support_tickets table.")
     public void validates_the_result_set_returned_from_the_support_tickets_table() {
 
+    /*
         Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
         String query= "SELECT * FROM u168183796_qaloantec.support_tickets";
@@ -57,5 +58,8 @@ public class DB_Stepdefinitions {
 
 
 
+     */
 
+
+    }
 }
