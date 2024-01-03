@@ -1,4 +1,4 @@
-Feature: As a user, I want to access the ticket details of a specified user through the API connection using their ID.
+Feature: API_US_002 As a user, I want to access the ticket details of a specified user through the API connection using their ID.
 
 
   Scenario Outline: Verify that when a GET request with valid authorization information and correct data (id)
@@ -59,7 +59,7 @@ Feature: As a user, I want to access the ticket details of a specified user thro
       | 315 |
 
 
-    @API02
+
   Scenario Outline: The contents of the data (id, user_id, name, email, ticket, subject, status, priority,
   last_reply, created_at, updated_at) within the response body should be verified
 
