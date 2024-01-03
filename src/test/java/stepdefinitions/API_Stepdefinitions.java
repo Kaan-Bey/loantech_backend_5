@@ -425,6 +425,7 @@ public class API_Stepdefinitions {
 
     }
 
+
     @Given("The API user prepares a POST request containing the correct data to send to the user categories add endpoint")
     public void the_apı_user_prepares_a_post_request_containing_the_correct_data_to_send_to_the_user_categories_add_endpoint() {
         requestBody = new JSONObject();
@@ -432,6 +433,7 @@ public class API_Stepdefinitions {
         requestBody.put("description", ConfigReader.getProperty("description"));
 
     }
+
     @Given("The API user prepares a POST request containing the invalid data to send to the user categories add endpoint")
     public void the_apı_user_prepares_a_post_request_containing_the_invalid_data_to_send_to_the_user_categories_add_endpoint() {
         requestBody = new JSONObject();
@@ -759,6 +761,7 @@ public class API_Stepdefinitions {
         Assert.assertNull(approved_at, jsonPath.getString("data.approved_at"));
         Assert.assertEquals(created_at, jsonPath.getString("data.created_at"));
         Assert.assertEquals(updated_at, jsonPath.getString("data.updated_at"));
+
     }
 
 
@@ -868,6 +871,10 @@ int status, String created_at, String updated_at) {
         Assert.assertEquals(amount, jsonPath.getString("data.amount"));
         Assert.assertEquals(method_currency, jsonPath.getString("data.method_currency"));
         Assert.assertEquals(charge, jsonPath.getString("data.charge"));
+
+
+
+
     }
 
 
