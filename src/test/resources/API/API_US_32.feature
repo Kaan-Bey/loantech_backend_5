@@ -1,4 +1,4 @@
-
+@API32
 Feature: API_US_032 tickets answered access test
 
   Scenario: API_US_032_TC_01 Test a GET request

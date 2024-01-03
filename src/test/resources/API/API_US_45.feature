@@ -1,4 +1,4 @@
-
+@API45
   Feature: API_US_045 Testing access to pending deposit via API connection
 
     Scenario: API_US_045_TC_01 Test to verify that when a GET request is sent to the api/deposit/pending endpoint

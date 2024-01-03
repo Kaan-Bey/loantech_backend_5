@@ -1,5 +1,5 @@
 
-@US_017
+@API17
 Feature: API_US_017 As an administrator, access to loanplans list via API connection
 
   Scenario: API_US_017_TC_01 Test of sending a GET request with valid authorization information to the api/loanplans/list endpoint

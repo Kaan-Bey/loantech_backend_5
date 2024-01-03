@@ -1,4 +1,4 @@
-
+@API44
 Feature: API_US_044 Testing access to deposit list via API connection
 
   Scenario: API_US_044_TC_01 A GET request with valid authorization information is
