@@ -7,20 +7,23 @@ import java.util.List;
 import java.util.Map;
 
 public class DBUtils {
+
+
     public static Connection connection;
     public static Statement statement;
     public static ResultSet resultSet;
 
     public static String query;
 
-    //BU METHOD COK KULLANACAGIZ
-    //createConnection database e baglanmak icin. Burda url, username, password u kullanarak database baglaniyoruz
-    //Database e ne zaman baglanmak isterse bu methodu cagrabiliriz
-    //Bu method u daha cok BeforeMethod icinde setup icin kullanacagiz
+
     String url="jdbc:mysql://194.140.198.209/wonderworld_qa";;
     String username=ConfigReader.getProperty("DBname");
     String password=ConfigReader.getProperty("DBPassword");
 
+    //BU METHOD COK KULLANACAGIZ
+    //createConnection database e baglanmak icin. Burda url, username, password u kullanarak database baglaniyoruz
+    //Database e ne zaman baglanmak isterse bu methodu cagrabiliriz
+    //Bu method u daha cok BeforeMethod icinde setup icin kullanacagiz
 
     public static void createConnection() {
         String url=ConfigReader.getProperty("db_url");
@@ -51,6 +54,7 @@ public class DBUtils {
     }
 
     //Database baglantisini sonlandirmak icin. Bu Mehtod u test tamamladiktan sonra kullaniriz
+
     public static void closeConnection() {
         try {
             if (resultSet != null) {
@@ -67,11 +71,14 @@ public class DBUtils {
         }
     }
 
-    //Sonraki 3 methodu sadece connection,statement,resultset kullanmak istedigimizde kullaniriz
+    //Sonraki 3 methodu sadece connection, statement, resultset kullanmak istedigimizde kullaniriz
+
     //connection =>DBUtils.getConnection()
     //statement => DBUtils.getResultset()
     //resultSet => DBUtils.getResultset()
+
     //getStatement method statement object i olusturmak icin
+
     public static Statement getStatement() {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -82,7 +89,8 @@ public class DBUtils {
         return statement;
     }
 
-    //getConnection method Connection object i olusturmak icin. Bu method create createConnectiondan farkli olarak connection objesi return ediyor
+    //getConnection method Connection object i olusturmak icin. Bu method create createConnectiondan
+    // farkli olarak connection objesi return ediyor
 
     public static Connection getConnection() {
         String url=ConfigReader.getProperty("url");
@@ -98,6 +106,7 @@ public class DBUtils {
     }
 
     //getResultset method Resultset object i olusturmak icin.
+
     public static ResultSet getResultset() {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -111,6 +120,7 @@ public class DBUtils {
 
 
     //Table da kac satir var
+
     public static int getRowCount() throws Exception {
         resultSet.last();
         int rowCount = resultSet.getRow();
@@ -126,7 +136,10 @@ public class DBUtils {
     public static Object getCellValue(String query) {
         return getQueryResultList(query).get(0).get(0);
     }
-    /**
+
+
+
+    /*
      * @return returns a list of Strings which represent a row of data. If the query
      *         results in multiple rows and/or columns of data, only first row will
      *         be returned. The rest of the data will be ignored
@@ -136,7 +149,8 @@ public class DBUtils {
 
         return getQueryResultList(query).get(0);
     }
-    /**
+
+    /*
      * @return returns a map which represent a row of data where key is the column
      *         name. If the query results in multiple rows and/or columns of data,
      *         only first row will be returned. The rest of the data will be ignored
@@ -146,6 +160,7 @@ public class DBUtils {
 
         return getQueryResultMap(query).get(0);
     }
+
     /**
      * @return returns query result in a list of lists where outer list represents
      *         collection of rows and inner lists represent a single row
@@ -170,7 +185,9 @@ public class DBUtils {
         }
         return rowList;
     }
-    /**
+
+
+    /*
      * @return list of values of a single column from the result set
      */
 
@@ -189,7 +206,8 @@ public class DBUtils {
         }
         return rowList;
     }
-    /**
+
+    /*
      * @return returns query result in a list of maps where the list represents
      *         collection of rows and a map represents represent a single row with
      *         key being the column name
