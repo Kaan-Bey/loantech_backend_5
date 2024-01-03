@@ -1,4 +1,4 @@
-Feature: As an administrator, I should be able to delete a loan plan record in the system through API connection.
+Feature: API_US_022 As an administrator, I should be able to delete a loan plan record in the system through API connection.
 
   Scenario Outline: When a valid DELETE request with appropriate authorization credentials and
                     correct data (id) is sent to the 'api/loanplans/delete/{{id}}' endpoint, it should return a status code of 200,
