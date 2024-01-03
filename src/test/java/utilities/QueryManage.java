@@ -3,8 +3,19 @@ package utilities;
     public class QueryManage {
 
 
-  private String supportTicketQuery = "select count(*) from u168183796_qaloantec.Support_Tickets where create_staff_id=1";
 
+
+        private String supportTicketQuery = "select count(*) from u168183796_qaloantec.Support_Tickets " +
+                "where " +
+                "t";
+
+        public String getSupportTicketQuery() {
+            return supportTicketQuery;
+        }
+
+
+
+/*
   private String studentsQuery = "Select * From u168183796_qawonder.students Where firstname= 'Brian' AND lastname= 'Kohlar'";
 
   private String onlineExamQuery = "SELECT exam ,AVG(passing_percentage) FROM u168183796_qawonder.onlineexam group by exam";
@@ -22,7 +33,6 @@ package utilities;
         return supportTicketQuery;
     }
 
-    /*
     public String getStudentsQuery() {
         return studentsQuery;
     }

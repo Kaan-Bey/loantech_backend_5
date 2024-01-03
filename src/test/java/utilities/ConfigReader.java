@@ -8,7 +8,7 @@ public class ConfigReader {
     public static Properties properties;
 
 
-    //2-Bu classin amaci configration.propertiesdosyasini okumak
+    //2-Bu classin amaci configration.properties dosyasini okumak
     // ve aradaki key ikililerini kullanarak istegimiz key e ait value bize getirmek
 
     static {
