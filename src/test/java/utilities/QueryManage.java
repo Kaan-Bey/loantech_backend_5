@@ -5,9 +5,7 @@ package utilities;
 
 
 
-        private String supportTicketQuery = "select count(*) from u168183796_qaloantec.Support_Tickets " +
-                "where " +
-                "t";
+        private String supportTicketQuery = "SELECT * FROM support_tickets WHERE ticket LIKE '4%' LIMIT 1;" ;
 
         public String getSupportTicketQuery() {
             return supportTicketQuery;
@@ -15,7 +13,7 @@ package utilities;
 
 
 
-/*
+       /*
   private String studentsQuery = "Select * From u168183796_qawonder.students Where firstname= 'Brian' AND lastname= 'Kohlar'";
 
   private String onlineExamQuery = "SELECT exam ,AVG(passing_percentage) FROM u168183796_qawonder.onlineexam group by exam";
