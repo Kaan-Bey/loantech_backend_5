@@ -909,5 +909,16 @@ int status, String created_at, String updated_at) {
 
     }
 
+    @And("The API user saves the response from the user ticket list endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheUserTicketListEndpointWithValidAuthorizationInformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("user"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+    }
 }
 
