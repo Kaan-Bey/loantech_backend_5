@@ -101,20 +101,64 @@ public class DB_Stepdefinitions {
 
         query = queryManage.getSetMobileUpdate();
 
-       preparedStatement=DBUtils.getPraperedStatement(query);
+        preparedStatement = DBUtils.getPraperedStatement(query);
 
-       preparedStatement.setString(1,expectedmobile);
+        preparedStatement.setString(1, expectedmobile);
 
-       rowCount = preparedStatement.executeUpdate();
+        rowCount = preparedStatement.executeUpdate();
 
 
     }
 
-      @Given("It is verified that the mobile phone number has been updated.")
+    @Given("It is verified that the mobile phone number has been updated.")
     public void ıt_is_verified_that_the_mobile_phone_number_has_been_updated() {
 
         Assert.assertEquals(18, rowCount);
     }
+
+    @Given("The query is prepared and executed against the loans table.")
+    public void the_query_is_prepared_and_executed_against_the_loans_table() throws SQLException {
+        query = queryManage.getDeleteLoanQuery();
+        // resultSet = DBUtils.getStatement().executeQuery(query);
+
+
+    }
+
+    @Given("Validates the resultSet returned from the loans table.")
+    public void validates_the_result_set_returned_from_the_loans_table() {
+
+        Assert.assertNull(resultSet);
+    }
+
+    @Given("The query is prepared and executed against the Users table.")
+    public void the_query_is_prepared_and_executed_against_the_users_table() {
+        query = queryManage.getOrderUsersQuery();
+    }
+
+    @Given("Verify the result set from the Users table.")
+    public void verify_the_result_set_from_the_users_table() {
+
+        Assert.assertNull(resultSet);
+
+
+    }
+
+
+    @Given("The query is prepared and executed according to the Update_logs table.")
+    public void the_query_is_prepared_and_executed_according_to_the_update_logs_table() {
+
+        query = queryManage.getDeleteUpdateLogQuery();
+
+    }
+
+    @Given("Verify the result set returned from the Update_logs table.")
+    public void verify_the_result_set_returned_from_the_update_logs_table() {
+
+        Assert.assertNull(resultSet);
+
+
+    }
+
 
 }
 
