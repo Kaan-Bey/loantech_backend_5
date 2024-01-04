@@ -14,13 +14,8 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/DB",
         glue = {"stepdefinitions"},
-<<<<<<< HEAD
-        tags = "@DB",
-        dryRun =true
-=======
         tags = "@DB17",
         dryRun =false
->>>>>>> main
 )
 public class DB_Runner {
 }

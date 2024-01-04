@@ -57,22 +57,6 @@ public class DB_Stepdefinitions {
     }
 
 
-    @Given("depositsQuery is prepared")
-    public void deposits_query_is_prepared() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Given("data is verified")
-    public void data_is_verified() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Given("database is closed")
-    public void database_is_closed() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
     @Given("The database contains a ticket with value starting with {int}")
     public void the_database_contains_a_ticket_with_value_starting_with(int ticketValue) throws SQLException {
 
