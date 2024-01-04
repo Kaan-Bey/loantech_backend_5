@@ -7,6 +7,10 @@ import java.util.Properties;
 public class ConfigReader {
     public static Properties properties;
 
+
+    //2-Bu classin amaci configration.properties dosyasini okumak
+    // ve aradaki key ikililerini kullanarak istegimiz key e ait value bize getirmek
+
     static {
 
         String path="configuration.properties";
@@ -25,6 +29,8 @@ public class ConfigReader {
 
     }
 
+    //3-test classlarindan configReader classina
+    // ulasip yukaridaki islemleri yapmamizi saglayacak bir method
 
     public static String getProperty(String key){
 
