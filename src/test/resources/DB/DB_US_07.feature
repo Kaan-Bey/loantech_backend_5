@@ -15,11 +15,11 @@ Feature: DB_US_07 In the "support_tickets" table in the database, verify the "su
   Scenario Outline: DB_US_07_TC_01 (dynamic) Validate subject of a ticket with dynamic ticket value
 
     * Database connection is established.
-    * The database contains a ticket with value starting with <ticketValue>, <dataindex>, "<expectedStatus>"
+    * The database contains a ticket with value starting with <ticketValue>
     * I check the subject of the ticket
     * The subject should be valid
     * The database connection is closed.
 
     Examples:
-      | ticketValue | dataindex | expectedStatus |
-      | 4           | 0         | Test           |
+      | ticketValue |
+      | 4           |
