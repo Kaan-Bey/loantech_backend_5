@@ -11,9 +11,13 @@ package utilities;
             return supportTicketQuery;
         }
 
+        private String adminsQuery= "Select remember_token from admins  where email='info@loantechexper.com';";
 
+        public String getAdminsQuery() {
+            return adminsQuery;
+        }
 
-       /*
+/*
   private String studentsQuery = "Select * From u168183796_qawonder.students Where firstname= 'Brian' AND lastname= 'Kohlar'";
 
   private String onlineExamQuery = "SELECT exam ,AVG(passing_percentage) FROM u168183796_qawonder.onlineexam group by exam";

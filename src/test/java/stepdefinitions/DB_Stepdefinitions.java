@@ -91,8 +91,28 @@ public class DB_Stepdefinitions {
         DBUtils.closeConnection();
 
     }
-}
 
+    @Given("The query is prepared and executed to the admins table.")
+    public void the_query_is_prepared_and_executed_to_the_admins_table() throws SQLException {
+        query = queryManage.getAdminsQuery();
+        resultSet = DBUtils.getStatement().executeQuery(query);
+
+    }
+
+    @Given("Verify the remember_token information in the resultSet returned from the Admins table")
+    public void verify_the_remember_token_information_in_the_result_set_returned_from_the_admins_table() throws SQLException {
+
+        String expectedData = "1xUgfVUD1Ggx5CVz7mxLvcye8RXRbeFqSktSIkhya321TqDkLOsqhys4pnJv";
+
+        resultSet.next();
+
+        String actualData = resultSet.getString("remember_token");
+
+        Assert.assertEquals(expectedData, actualData);
+
+    }
+
+}
 
 
 
