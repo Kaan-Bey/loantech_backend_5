@@ -60,4 +60,14 @@ public class QueryManage {
         }
 
      */
+
+    private String subscribersEmailNotLike = "select * from subscribers where email not like '%a%';";
+
+
+    public String getSubscribersEmailNotLike() {
+        return subscribersEmailNotLike;
+    }
+
+
+
 }

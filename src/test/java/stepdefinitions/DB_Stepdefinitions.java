@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import utilities.DBUtils;
 import utilities.QueryManage;
+import utilities.ReusableClass;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,6 +116,19 @@ public class DB_Stepdefinitions {
 
         Assert.assertEquals(18, rowCount);
     }
+    @Given("The query is prepared and executed to the Subscribers table.")
+    public void the_query_is_prepared_and_executed_to_the_subscribers_table() throws SQLException {
+    String query=queryManage.getSubscribersEmailNotLike();
+    resultSet = DBUtils.getStatement().executeQuery(query);
+
+    }
+    @Given("lists data that does not contain a in email data.")
+    public void lists_data_that_does_not_contain_a_in_email_data() throws SQLException {
+        while (resultSet.next()){
+            System.out.println(resultSet.getString(1)+"     "+resultSet.getString(2));
+        }
+    }
+
 
 }
 
