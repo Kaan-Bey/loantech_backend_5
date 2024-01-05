@@ -15,9 +15,9 @@ Feature: API_US_41 As an administrator, I want to be able to approve the loan in
 
     Examples:
       | id  |
-      | 221|
+      | 65 |
 
-
+      # 80
 
   @API41
   Scenario Outline: API_US_41_TC_02 When a PATCH request containing valid authorization information and a pre-approved (id) is sent to
