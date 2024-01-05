@@ -158,6 +158,52 @@ Faker faker=new Faker();
     }
 
 
+    @Given("The query is prepared and executed against the loans table.")
+    public void the_query_is_prepared_and_executed_against_the_loans_table() throws SQLException {
+        query = queryManage.getDeleteLoanQuery();
+        // resultSet = DBUtils.getStatement().executeQuery(query);
+
+
+    }
+
+    @Given("Validates the resultSet returned from the loans table.")
+    public void validates_the_result_set_returned_from_the_loans_table() {
+
+        Assert.assertNull(resultSet);
+    }
+
+    @Given("The query is prepared and executed against the Users table.")
+    public void the_query_is_prepared_and_executed_against_the_users_table() {
+        query = queryManage.getOrderUsersQuery();
+    }
+
+    @Given("Verify the result set from the Users table.")
+    public void verify_the_result_set_from_the_users_table() {
+
+        Assert.assertNull(resultSet);
+
+
+    }
+
+
+    @Given("The query is prepared and executed according to the Update_logs table.")
+    public void the_query_is_prepared_and_executed_according_to_the_update_logs_table() {
+
+        query = queryManage.getDeleteUpdateLogQuery();
+
+    }
+
+    @Given("Verify the result set returned from the Update_logs table.")
+    public void verify_the_result_set_returned_from_the_update_logs_table() {
+
+        Assert.assertNull(resultSet);
+
+
+    }
+
+
+
+
     @Given("The query is prepared and executed on the deposit table")
     public void the_query_is_prepared_and_executed_on_the_deposit_table() throws SQLException {
       query = queryManage.getDepositsQuery();
@@ -181,6 +227,7 @@ Faker faker=new Faker();
      }
 
     }
+
 }
 
 // [6, 45, 24, 88, 55, 69, 21, 26, 49, 53, 89, 70, 34, 71, 74, 8, 62, 11, 43, 64, 25, 40, 16, 57, 46, 13, 22, 85, 65, 17, 19, 81, 41, 79, 27, 44, 15, 98, 14, 12, 32, 68, 48, 9, 83, 33, 31, 61, 80]

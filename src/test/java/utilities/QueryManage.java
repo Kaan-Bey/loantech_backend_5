@@ -62,6 +62,24 @@ public class QueryManage {
      */
 
 
+    private String deleteLoanQuery = "DELETE FROM loans WHERE loan_number 'FOEYOKPQ3QEY';";
+
+    public String getDeleteLoanQuery() {
+        return deleteLoanQuery;
+    }
+
+    private String orderUsersQuery = " SELECT * FROM users ORDER BY lastname ASC, firstname DESC;";
+
+    public String getOrderUsersQuery() {
+        return orderUsersQuery;
+    }
+
+    private String deleteUpdateLogQuery = "DELETE * FROM update_log WHERE id = 18;";
+
+    public String getDeleteUpdateLogQuery() {
+        return deleteUpdateLogQuery;
+    }
+
     private String depositsQuery = "Select user_id from deposits where amount  >100 and 500< amount;";
 
     public String getDepositsQuery() {
