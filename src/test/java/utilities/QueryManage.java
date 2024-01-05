@@ -61,6 +61,7 @@ public class QueryManage {
 
      */
 
+
     private String deleteLoanQuery = "DELETE FROM loans WHERE loan_number 'FOEYOKPQ3QEY';";
 
     public String getDeleteLoanQuery() {
@@ -78,4 +79,25 @@ public class QueryManage {
     public String getDeleteUpdateLogQuery() {
         return deleteUpdateLogQuery;
     }
+
+    private String depositsQuery = "Select user_id from deposits where amount  >100 and 500< amount;";
+
+    public String getDepositsQuery() {
+        return depositsQuery;
+    }
+
+    private String subscribersEmailNotLike = "select * from subscribers where email not like '%a%';";
+
+
+    public String getSubscribersEmailNotLike() {
+        return subscribersEmailNotLike;
+    }
+
+    private static String adminpasswordInsertQuery="insert into admin_password_resets (email,token,status,created_at) values (?,?,?,?),(?,?,?,?);";
+
+    public static String getAdminpasswordInsertQuery() {
+        return adminpasswordInsertQuery;
+    }
+
+
 }
