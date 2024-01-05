@@ -98,6 +98,25 @@ Faker faker=new Faker();
 
     }
 
+
+    @Given("The query is prepared and executed to the admins table.")
+    public void the_query_is_prepared_and_executed_to_the_admins_table() throws SQLException {
+        query = queryManage.getAdminsQuery();
+        resultSet = DBUtils.getStatement().executeQuery(query);
+
+    }
+
+    @Given("Verify the remember_token information in the resultSet returned from the Admins table")
+    public void verify_the_remember_token_information_in_the_result_set_returned_from_the_admins_table() throws SQLException {
+
+        String expectedData = "1xUgfVUD1Ggx5CVz7mxLvcye8RXRbeFqSktSIkhya321TqDkLOsqhys4pnJv";
+
+        resultSet.next();
+
+        String actualData = resultSet.getString("remember_token");
+
+        Assert.assertEquals(expectedData, actualData);
+    }
     @Given("The users table lists usernames with the penultimate letter e {string}")
     public void the_users_table_lists_usernames_with_the_penultimate_letter_e(String expectedmobile) throws SQLException {
 
@@ -226,12 +245,12 @@ Faker faker=new Faker();
          }
      }
 
+
     }
 
 }
 
 // [6, 45, 24, 88, 55, 69, 21, 26, 49, 53, 89, 70, 34, 71, 74, 8, 62, 11, 43, 64, 25, 40, 16, 57, 46, 13, 22, 85, 65, 17, 19, 81, 41, 79, 27, 44, 15, 98, 14, 12, 32, 68, 48, 9, 83, 33, 31, 61, 80]
-
 
 
 

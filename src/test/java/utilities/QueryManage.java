@@ -12,10 +12,18 @@ public class QueryManage {
 
     private String setMobileUpdate = "UPDATE u168183796_qaloantec.users SET mobile = ?  WHERE username LIKE '%e_';";
 
+        private String adminsQuery= "Select remember_token from admins  where email='info@loantechexper.com';";
+
+
+        public String getAdminsQuery() {
+            return adminsQuery;
+        }
+
 
     public String getSetMobileUpdate() {
         return setMobileUpdate;
     }
+
 /*
   private String studentsQuery = "Select * From u168183796_qawonder.students Where firstname= 'Brian' AND lastname= 'Kohlar'";
 
