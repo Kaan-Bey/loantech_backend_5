@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import utilities.DBUtils;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DB_Stepdefinitions {
-
+Faker faker=new Faker();
 
     String query;
     PreparedStatement preparedStatement;
@@ -128,7 +129,33 @@ public class DB_Stepdefinitions {
             System.out.println(resultSet.getString(1)+"     "+resultSet.getString(2));
         }
     }
+    @Given("adminpasswordInsertQuery is prepared")
+    public void adminpassword_ınsert_query_is_prepared() throws SQLException {
+        String email1; String email2; String token1; String token2;int status; String created_at;
+        query=QueryManage.getAdminpasswordInsertQuery();
+        email1=faker.internet().emailAddress();
+        email2=faker.internet().emailAddress();
+        token1=faker.internet().password();
+        token2=faker.internet().password();
+        status=1;
+        created_at="2024.01.03 19:00";
+        preparedStatement=DBUtils.getPraperedStatement(query);
+        preparedStatement.setString(1,email1);
+        preparedStatement.setString(2,token1);
+        preparedStatement.setInt(3,status);
+        preparedStatement.setString(4,created_at);
+        preparedStatement.setString(5,email2);
+        preparedStatement.setString(6,token2);
+        preparedStatement.setInt(7,status);
+        preparedStatement.setString(8,created_at);
 
+    }
+    @Given("It is verified that new datas are inserted")
+    public void ıt_is_verified_that_new_datas_are_inserted() throws SQLException {
+
+        int rowCount=preparedStatement.executeUpdate();
+        Assert.assertEquals(2,rowCount);
+    }
 
 }
 
