@@ -61,6 +61,13 @@ public class QueryManage {
 
      */
 
+
+    private String depositsQuery = "Select user_id from deposits where amount  >100 and 500< amount;";
+
+    public String getDepositsQuery() {
+        return depositsQuery;
+    }
+
     private String subscribersEmailNotLike = "select * from subscribers where email not like '%a%';";
 
 
@@ -73,5 +80,6 @@ public class QueryManage {
     public static String getAdminpasswordInsertQuery() {
         return adminpasswordInsertQuery;
     }
+
 
 }
