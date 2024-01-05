@@ -101,22 +101,50 @@ public class DB_Stepdefinitions {
 
         query = queryManage.getSetMobileUpdate();
 
-       preparedStatement=DBUtils.getPraperedStatement(query);
+        preparedStatement = DBUtils.getPraperedStatement(query);
 
-       preparedStatement.setString(1,expectedmobile);
+        preparedStatement.setString(1, expectedmobile);
 
-       rowCount = preparedStatement.executeUpdate();
+        rowCount = preparedStatement.executeUpdate();
 
 
     }
 
-      @Given("It is verified that the mobile phone number has been updated.")
+    @Given("It is verified that the mobile phone number has been updated.")
     public void ıt_is_verified_that_the_mobile_phone_number_has_been_updated() {
 
         Assert.assertEquals(18, rowCount);
     }
 
+
+    @Given("The query is prepared and executed on the deposit table")
+    public void the_query_is_prepared_and_executed_on_the_deposit_table() throws SQLException {
+      query = queryManage.getDepositsQuery();
+      resultSet = DBUtils.getStatement().executeQuery(query);
+
+    }
+
+    @Given("The user_id information in the resultSet returned from the deposits table is verified.")
+    public void the_user_id_information_in_the_result_set_returned_from_the_deposits_table_is_verified() throws SQLException {
+     List<Integer> actualuserId = new ArrayList<>();
+     Integer[] user_Id = {6, 45, 24, 88, 55, 69, 21, 26, 49, 53, 89, 70, 34, 71, 74, 8, 62, 11, 43, 64, 25, 40, 16, 57, 46, 13, 22, 85, 65, 17, 19, 81, 41, 79, 27, 44, 15, 98, 14, 12, 32, 68, 48, 9, 83, 33, 31, 61, 80};
+     List<Integer> expecteduserId = new ArrayList<>(Arrays.asList(user_Id));
+     while (resultSet.next()) {
+         int userId = resultSet.getInt("user_id");
+         if (!actualuserId.contains(userId)){
+             actualuserId.add(userId);
+         }
+         for (int i = 0; i < actualuserId.size(); i++) {
+             Assert.assertEquals(expecteduserId.get(i),actualuserId.get(i));
+         }
+     }
+
+    }
 }
+
+// [6, 45, 24, 88, 55, 69, 21, 26, 49, 53, 89, 70, 34, 71, 74, 8, 62, 11, 43, 64, 25, 40, 16, 57, 46, 13, 22, 85, 65, 17, 19, 81, 41, 79, 27, 44, 15, 98, 14, 12, 32, 68, 48, 9, 83, 33, 31, 61, 80]
+
+
 
 
 

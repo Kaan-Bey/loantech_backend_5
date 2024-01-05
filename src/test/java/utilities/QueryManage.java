@@ -60,4 +60,10 @@ public class QueryManage {
         }
 
      */
+
+    private String depositsQuery = "Select user_id from deposits where amount  >100 and 500< amount;";
+
+    public String getDepositsQuery() {
+        return depositsQuery;
+    }
 }
