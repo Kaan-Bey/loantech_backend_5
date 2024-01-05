@@ -910,17 +910,27 @@ int status, String created_at, String updated_at) {
 
     }
 
+
     @Then("The API user saves the response from the admin loans details id  endpoint with valid authorization information")
     public void theAPIUserSavesTheResponseFromTheAdminLoansDetailsIdEndpointWithValidAuthorizationInformation() {
         response = given()
                 .spec(spec)
                 .header("Accept", "application/json")
                 .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+
+    @And("The API user saves the response from the user ticket list endpoint with valid authorization information")
+    public void theAPIUserSavesTheResponseFromTheUserTicketListEndpointWithValidAuthorizationInformation() {
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .headers("Authorization", "Bearer " + Authentication.generateToken("user"))
+
                 .when()
                 .get(fullPath);
 
         response.prettyPrint();
     }
+
     @Then("The API user verifies that the content of the data field in the response body includes {int}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {int}, {string}, {string}, {int}, {string}, {string}, {string}, {string}")
     public void the_api_user_verifies_that_the_content_of_the_data_field_in_the_response_body_includes(int id, String loan_number, int user_id, int plan_id, String amount, String per_installment, int installment_interval, int delay_value, String charge_per_installment, String delay_charge, int given_installment, int total_installment, String application_form, String admin_feedback, int status, String due_notification_sent, String approved_at, String created_at, String updated_at) {
         jsonPath = response.jsonPath();
@@ -948,6 +958,7 @@ int status, String created_at, String updated_at) {
 
 
     }
+
 
 }
 
