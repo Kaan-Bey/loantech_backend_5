@@ -68,6 +68,10 @@ public class QueryManage {
         return subscribersEmailNotLike;
     }
 
+    private static String adminpasswordInsertQuery="insert into admin_password_resets (email,token,status,created_at) values (?,?,?,?),(?,?,?,?);";
 
+    public static String getAdminpasswordInsertQuery() {
+        return adminpasswordInsertQuery;
+    }
 
 }
