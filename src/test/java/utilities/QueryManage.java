@@ -108,4 +108,11 @@ public class QueryManage {
     }
 
 
+    private String supportMessagesQuery = "SELECT * FROM u168183796_qaloantec.support_messages WHERE message = '?'";
+
+
+    public String getSupportMessagesQuery() {
+        return supportMessagesQuery;
+
+    }
 }
