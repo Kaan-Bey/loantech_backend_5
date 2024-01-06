@@ -14,7 +14,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     Examples:
       | id  |
-      | 624 |
+      | 1986 |
 
 
   @API16
@@ -55,7 +55,7 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
     Examples:
       | id  |
-      | 609 |
+      | 1986 |
 
 
     @API16
@@ -69,4 +69,4 @@ Feature: API_US_16 As an administrator, I should be able to unregister categorie
 
       Examples:
       | id  |
-      | 605 |
+      | 1986 |

@@ -917,6 +917,10 @@ int status, String created_at, String updated_at) {
                 .spec(spec)
                 .header("Accept", "application/json")
                 .headers("Authorization", "Bearer " + Authentication.generateToken("admin"))
+                .when()
+                .get(fullPath);
+
+        response.prettyPrint();
     }
 
 
