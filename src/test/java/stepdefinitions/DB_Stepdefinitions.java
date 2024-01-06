@@ -245,10 +245,21 @@ Faker faker=new Faker();
          }
      }
 
+    }
+    @Given("In the Support messages table in the database, the support ticket id of the data whose {string} information is id is verified.")
+    public void ın_the_support_messages_table_in_the_database_the_support_ticket_id_of_the_data_whose_information_is_id_is_verified(String message) throws SQLException {
+        query = queryManage.getSupportMessagesQuery();
+        preparedStatement = DBUtils.getPraperedStatement(query);
+
+        Assert.assertEquals("sdgf ssdsg sdgsdg",message);
+
+
+
 
     }
 
 }
+
 
 // [6, 45, 24, 88, 55, 69, 21, 26, 49, 53, 89, 70, 34, 71, 74, 8, 62, 11, 43, 64, 25, 40, 16, 57, 46, 13, 22, 85, 65, 17, 19, 81, 41, 79, 27, 44, 15, 98, 14, 12, 32, 68, 48, 9, 83, 33, 31, 61, 80]
 
