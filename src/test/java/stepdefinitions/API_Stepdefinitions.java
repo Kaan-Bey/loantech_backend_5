@@ -922,6 +922,8 @@ int status, String created_at, String updated_at) {
 
         response.prettyPrint();
     }
+
+
     @And("The API user saves the response from the user ticket list endpoint with valid authorization information")
     public void theAPIUserSavesTheResponseFromTheUserTicketListEndpointWithValidAuthorizationInformation() {
         response = given()
